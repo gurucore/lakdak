@@ -3,7 +3,7 @@
     "baseUrl": "./",
     "target": "esnext",
     "useDefineForClassFields": true,
-    "module": "esnext",
+    "module": "esnext", // es2017
     "moduleResolution": "node",
     "isolatedModules": true,
     "strict": true,
@@ -17,7 +17,22 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "skipLibCheck": true,
     "outDir": "dist",
-    "declaration": true
+    "declaration": true,
+
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+
+    "allowJs": true,
+    "checkJs": false,
+
+    "incremental": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
   },
-  "include": ["vite.config.*", "env.d.ts", "src/**/*", "src/**/*.vue"]
+  "include": ["vite.config.*", "env.d.ts", "src/**/*"]
 }

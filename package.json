@@ -1,6 +1,18 @@
 {
   "name": "lakdak",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "keywords": [
+    "node",
+    "nodejs",
+    "lockevn"
+  ],
+  "description": "Web service for Metaforce bot",
+  "releasenote": "Random number on lucky message. ChatMemberInteraction. Process /start command params. Support TimeDayToRun. Join, Left Group event. Support multiple periods for LuckyDraw. All datetime are working in UTC. LuckyTeaBot random staff from GSheetList. Webhook for telegram, secure with secret_token, protect your app/API with roles. Auth Guard controller.",
+  "author": "lockevn",
+  "license": "Copyright",
+  "engines": {
+    "node": "16.x"
+  },
   "files": [
     "dist"
   ],
@@ -24,7 +36,7 @@
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@types/node": "^16.11.9",
+    "@types/node": "^16.18.3",
     "@vitest/ui": "^0.24.5",
     "typescript": "~4.3.5",
     "vite": "^3.2.3",
