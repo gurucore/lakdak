@@ -11,6 +11,7 @@ function $parcel$interopDefault(a) {
 $parcel$export(module.exports, "testFunction", () => $71713b189d753220$export$e2e77b41cb4e1f9e);
 $parcel$export(module.exports, "DevOpsHelper", () => $441290d673c9fdae$export$2e2bcd8739ae039);
 $parcel$export(module.exports, "SecurityHelper", () => $3b4d8d87d35b724a$export$2e2bcd8739ae039);
+$parcel$export(module.exports, "HttpProtocolHelper", () => $77522bb4e9bb0c45$export$2e2bcd8739ae039);
 function $71713b189d753220$export$e2e77b41cb4e1f9e() {
     return 1;
 }
@@ -108,6 +109,18 @@ class $3b4d8d87d35b724a$export$2e2bcd8739ae039 {
             oaepHash: "sha256"
         }, Buffer.from(encryptedTextBase64, "base64"));
         return decryptedData.toString("utf8");
+    }
+}
+
+
+/** Helper to work with HTTP Protocol */ class $77522bb4e9bb0c45$export$2e2bcd8739ae039 {
+    /**
+   * extract bearer token from request header
+   * @param req
+   * @returns
+   */ static extractBearerToken(req) {
+        const hash = req?.headers?.authorization?.replace("Bearer ", "");
+        return hash;
     }
 }
 

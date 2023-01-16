@@ -1,6 +1,6 @@
 {
   "name": "lakdak",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "keywords": [
     "node",
     "nodejs",
@@ -53,7 +53,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn ci"
+      "pre-commit": "yarn build && yarn test:run"
     }
   },
   "stackblitz": {

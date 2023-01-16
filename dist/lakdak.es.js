@@ -102,7 +102,19 @@ class $5148e669c4f26c09$export$2e2bcd8739ae039 {
 }
 
 
+/** Helper to work with HTTP Protocol */ class $1dccf0bb8f866f27$export$2e2bcd8739ae039 {
+    /**
+   * extract bearer token from request header
+   * @param req
+   * @returns
+   */ static extractBearerToken(req) {
+        const hash = req?.headers?.authorization?.replace("Bearer ", "");
+        return hash;
+    }
+}
 
 
-export {$042a42b3e44c62c9$export$e2e77b41cb4e1f9e as testFunction, $d32089d40c95bd18$export$2e2bcd8739ae039 as DevOpsHelper, $5148e669c4f26c09$export$2e2bcd8739ae039 as SecurityHelper};
+
+
+export {$042a42b3e44c62c9$export$e2e77b41cb4e1f9e as testFunction, $d32089d40c95bd18$export$2e2bcd8739ae039 as DevOpsHelper, $5148e669c4f26c09$export$2e2bcd8739ae039 as SecurityHelper, $1dccf0bb8f866f27$export$2e2bcd8739ae039 as HttpProtocolHelper};
 //# sourceMappingURL=lakdak.es.js.map

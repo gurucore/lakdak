@@ -13,5 +13,8 @@ export class SecurityHelper {
     static encryptText(publicKey: any, plainText: string): string;
     static decryptText(privateKey: any, encryptedTextBase64: string): string;
 }
+export class HttpProtocolHelper {
+    static extractBearerToken(req: any): any;
+}
 
 //# sourceMappingURL=index.d.ts.map
