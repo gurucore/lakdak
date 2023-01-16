@@ -34,5 +34,5 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
   },
-  "include": ["vite.config.*", "env.d.ts", "src/**/*"]
+  "include": ["vite.config.*", "env.d.ts", "src/**/*", "rollup.config.ts"]
 }
