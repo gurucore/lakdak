@@ -3,7 +3,7 @@ import os from 'os'
 /**
  * Helper to  inspect, check, analyse command send to chatbot
  */
-export default class DevOpHelper {
+export default class DevOpsHelper {
   /**
    * Get current server IP address
    * @param ipType "v4" or "v6"
