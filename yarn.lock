@@ -674,6 +674,15 @@
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
+"@parcel/transformer-typescript-tsc@^2.8.2":
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-tsc/-/transformer-typescript-tsc-2.8.2.tgz#6e7ec00ed1f08f1748b4f0dda09392945b51ec1d"
+  integrity sha512-VyAyTLtFlzGz4yuOVEw1Gs7gxlxErFRj3sE3Xv/IaGyV+01u20RLX92uB/nH4WRxor9f2WOKoPbhbRcw/ZOzMA==
+  dependencies:
+    "@parcel/plugin" "2.8.2"
+    "@parcel/source-map" "^2.1.1"
+    "@parcel/ts-utils" "2.8.2"
+
 "@parcel/transformer-typescript-types@2.8.2":
   version "2.8.2"
   resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.8.2.tgz#a53a45e5a64dde0497b9ac77eb9cf8660ceb975c"
@@ -1653,7 +1662,7 @@ resolve@^1.22.1:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-rimraf@^4.0.7:
+rimraf@latest:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-4.0.7.tgz#f438c7d6a2d5e5cca1d81e3904a48ac7b053a542"
   integrity sha512-CUEDDrZvc0swDgVdXGiv3FcYYQMpJxjvSGt85Amj6yU+MCVWurrLCeLiJDdJPHCzNJnwuebBEdcO//eP11Xa7w==

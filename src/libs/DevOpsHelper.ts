@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 import os from 'os'
 
 /**

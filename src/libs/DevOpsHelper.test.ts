@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { vi, describe, expect, it, test } from 'vitest'
 import DevOpsHelper from './DevOpsHelper'
 
 describe('DevOpsHelper', () => {
