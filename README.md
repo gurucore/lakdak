@@ -4,14 +4,17 @@ NodeJS Lib, Core lib for backend (API) services
 
 Common and best practices code are accumulated here
 
-Repo create from
-https://github.com/josip2312/typescript-lib-vite
+## FE Component library
+
+Use Vite https://github.com/josip2312/typescript-lib-vite
+
+If you want to customize configuratio, see [Vite Configuration Reference](https://vitejs.dev/config/).
 
 Blog post: https://jivancic.com/posts/build-a-component-library.html
 
-## We use vite to build this library
+## BE NodeJS library
 
-If you want to customize configuratio, see [Vite Configuration Reference](https://vitejs.dev/config/).
+Use Parcel https://dev.to/ihaback/create-your-own-typescript-library-with-parceljs-3dh7
 
 # Project Setup
 
