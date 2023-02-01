@@ -1,4 +1,4 @@
-# node-lib-core
+# Lakdak: The common NodeJS utilities library
 
 NodeJS Lib, Core lib for backend (API) services
 
@@ -16,40 +16,42 @@ Blog post: https://jivancic.com/posts/build-a-component-library.html
 
 Use Parcel https://dev.to/ihaback/create-your-own-typescript-library-with-parceljs-3dh7
 
-# Project Setup
+# Project Setup for contribution
+
+We use _Yarn_ for package management.
 
 ```sh
-pnpm install
+yarn install
 ```
 
 ### Compile and Hot-Reload for Development
 
 ```sh
-pnpm run dev
+yarn dev
 ```
 
-# Test
+## Test
 
 We use https://vitest.dev for blazing fast unit test
-Run `npm test` (run in watch mode) and change a test or source code to see HMR in action!
+Run `yarn test` (watch mode) and change a test or source code to see HMR in action!
 
-Or use the recommended VSCode plugin `ZixuanChen.vitest-explorer`
+Or you use the recommended VSCode plugin `ZixuanChen.vitest-explorer`
 
 # Build for production release
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm run build
-```
+Type-Check, Compile and Minify for Production
 
 > Remember to export what you want to expose in `index.ts`
 
 > E.g.: `export { hello as testFunction } from "./libs/lib";`
 
-## Usage
+```sh
+yarn build
+```
 
-In project A, user can use
+# Usage
+
+In any TypeScript (or JavaScript) project, developer uses lakdak by
 
 ```
 import { testFunction } from "lakdak"
