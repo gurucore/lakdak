@@ -1,24 +1,11 @@
 # Lakdak: The common NodeJS utilities library
 
-NodeJS Lib, Core lib for backend (API) services
-
-Common and best practices code are accumulated here
-
-## FE Component library
-
-Use Vite https://github.com/josip2312/typescript-lib-vite
-
-If you want to customize configuratio, see [Vite Configuration Reference](https://vitejs.dev/config/).
-
-Blog post: https://jivancic.com/posts/build-a-component-library.html
-
-## BE NodeJS library
-
-Use Parcel https://dev.to/ihaback/create-your-own-typescript-library-with-parceljs-3dh7
+**Common and best practices** code are accumulated here in a NodeJS Lib for writting backend (API) services
 
 # Project Setup for contribution
 
-We use _Yarn_ for package management.
+- Use Parcel https://dev.to/ihaback/create-your-own-typescript-library-with-parceljs-3dh7
+- We use _Yarn_ for package management.
 
 ```sh
 yarn install
@@ -49,6 +36,10 @@ Type-Check, Compile and Minify for Production
 yarn build
 ```
 
+- The output will be put to `/dist`
+- commit the `.dist` folder to repo to publish it on Github
+- create new `versioned tag` for the release
+
 # Usage
 
 In any TypeScript (or JavaScript) project, developer uses lakdak by
@@ -57,3 +48,11 @@ In any TypeScript (or JavaScript) project, developer uses lakdak by
 import { testFunction } from "lakdak"
 console.log(testFunction())
 ```
+
+# Note for FE Component library
+
+Use Vite https://github.com/josip2312/typescript-lib-vite
+
+If you want to customize configuratio, see [Vite Configuration Reference](https://vitejs.dev/config/).
+
+Blog post: https://jivancic.com/posts/build-a-component-library.html

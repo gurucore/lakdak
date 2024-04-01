@@ -1,6 +1,6 @@
 {
   "name": "lakdak",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "keywords": [
     "node",
     "nodejs",
@@ -11,7 +11,7 @@
   "author": "lockevn",
   "license": "UNLICENSED",
   "engines": {
-    "node": "16.x"
+    "node": ">=16.x"
   },
   "files": [
     "dist"
