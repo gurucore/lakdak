@@ -1,6 +1,6 @@
 {
   "name": "lakdak",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "keywords": [
     "node",
     "nodejs",
@@ -36,7 +36,7 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "coverage": "vitest run --coverage",
-    "ci": "yarn build && yarn test && yarn lint && yarn check"
+    "ci": "pnpm build && pnpm test && pnpm lint && pnpm check"
   },
   "devDependencies": {
     "@parcel/packager-ts": "2.8.2",
@@ -53,10 +53,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn build && yarn test:run"
+      "pre-commit": "pnpm build && pnpm test:run"
     }
   },
   "stackblitz": {
-    "startCommand": "yarn test:ui"
+    "startCommand": "pnpm test:ui"
   }
 }
