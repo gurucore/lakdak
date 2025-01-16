@@ -3,7 +3,7 @@
 import os from 'os'
 
 /**
- * Helper to  inspect, check, analyse command send to chatbot
+ * Helper to inspect, check, analyse command send to chatbot
  */
 export default class DevOpsHelper {
   /**
