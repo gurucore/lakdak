@@ -35,6 +35,6 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
   },
-  "include": ["vite.config.*", "env.d.ts", "src/**/*", "rollup.config.ts"],
+  "include": ["vite.config.*", "env.d.ts", "src/**/*", "rollup.config.ts", "src/**/*.test.ts"],
   "exclude": ["node_modules", "dist"]
 }
