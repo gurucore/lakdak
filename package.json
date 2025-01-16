@@ -7,7 +7,7 @@
     "lockevn"
   ],
   "description": "Library for common utils in NodeJS to develop backend web API",
-  "releasenote": "Setup project to build and output ES and UMD module",
+  "releasenote": "Setup project to build and output ES and UMD module. Add new Helpers: File CLI RawNetwork Util",
   "author": "lockevn",
   "license": "UNLICENSED",
   "engines": {
