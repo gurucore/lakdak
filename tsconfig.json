@@ -1,38 +1,40 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
     "target": "esnext",
-    "useDefineForClassFields": true,
     "module": "esnext", // es2017
     "moduleResolution": "node",
-    "isolatedModules": true,
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
+
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+
+    "skipLibCheck": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
     "esModuleInterop": true,
+    "baseUrl": "./",
+    "outDir": "dist",
     "paths": {
       "@/*": ["src/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-    "skipLibCheck": true,
-    "outDir": "dist",
-    "declaration": true,
 
-    "removeComments": true,
+    "sourceMap": true,
+    "declaration": true,
+    "removeComments": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
 
+    "strict": true,
     "allowJs": true,
-    "checkJs": false,
-
+    "checkJs": true,
     "incremental": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
+    "useDefineForClassFields": true,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
   },
-  "include": ["vite.config.*", "env.d.ts", "src/**/*", "rollup.config.ts"]
+  "include": ["vite.config.*", "env.d.ts", "src/**/*", "rollup.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }
