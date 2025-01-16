@@ -1,6 +1,6 @@
 {
   "name": "lakdak",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "keywords": [
     "node",
     "nodejs",
@@ -38,18 +38,21 @@
     "coverage": "vitest run --coverage",
     "ci": "pnpm build && pnpm test && pnpm lint && pnpm check"
   },
+  "dependencies": {},
+  "peerDependencies": {
+    "nanoid": "^5.0.0"
+  },
   "devDependencies": {
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8",
+    "@types/node": "^22.10.7",
+    "@vitest/ui": "^2.1.8",
     "@parcel/packager-ts": "2.8.2",
     "@parcel/transformer-typescript-tsc": "^2.8.2",
     "@parcel/transformer-typescript-types": "2.8.2",
-    "@types/node": "^16.18.3",
-    "@vitest/ui": "^0.24.5",
     "husky": "^8.0.3",
     "parcel": "latest",
-    "rimraf": "latest",
-    "typescript": "~4.3.5",
-    "vite": "^3.2.3",
-    "vitest": "^0.24.5"
+    "rimraf": "latest"
   },
   "husky": {
     "hooks": {
