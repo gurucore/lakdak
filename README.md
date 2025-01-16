@@ -42,9 +42,11 @@ pnpm build
 
 # Usage
 
-In any TypeScript (or JavaScript) project, developer uses lakdak by
+In any TypeScript (or JavaScript) project, developer uses lakdak by add deps:
 
-```
-import { testFunction } from "lakdak"
-console.log(testFunction())
+`"lakdak": "github:gurucore/lakdak#v0.1.0"`
+
+```js
+import { FileHelper } from 'lakdak'
+console.log(FileHelper())
 ```
