@@ -22,7 +22,6 @@ export class DownloadError extends CustomError {
   }
 }
 
-// TODO: PERFORMANCE test with axios to see what is better/faster
 /*
       In Node.js: Axios uses the built-in http and https modules. 
       This means that when you use Axios in a Node.js environment, 
@@ -73,16 +72,17 @@ When you need the additional features these libraries provide (like automatic re
 
       const protocol = url.protocol === 'https:' ? https : http
       const request = protocol.get(url, { timeout, headers }, (response) => {
-        // // Handle redirects
-        // if (response.statusCode === 301 || response.statusCode === 302) {
-        //   const redirectUrl = response.headers.location
-        //   if (!redirectUrl) {
-        //     reject(new DownloadError('Redirect location not provided', response.statusCode, urlString))
-        //     return
-        //   }
-        //   FileDownloader.download(redirectUrl, filePath, options).then(resolve).catch(reject)
-        //   return
-        // }
+        // Support download via http redirects
+        if (response.statusCode === 301 || response.statusCode === 302) {
+          const redirectUrl = response.headers.location
+          if (!redirectUrl) {
+            reject(new DownloadError('Redirect location not provided', undefined, response.statusCode, urlString))
+            return
+          }
+
+          RawNetworkHelper.download(redirectUrl, filePath, options).then(resolve).catch(reject)
+          return
+        }
 
         // Handle error status codes
         if (response.statusCode !== 200) {
@@ -110,7 +110,6 @@ When you need the additional features these libraries provide (like automatic re
 
       request.on('error', (err) => {
         fileStream.destroy()
-        // TODO: use FileHelper to delete files
         fs.unlink(filePath, () => {
           reject(new DownloadError(`Network error: ${err.message}`, err, undefined, urlString))
         })

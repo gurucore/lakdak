@@ -64,6 +64,7 @@ export class FileHelper {
     return tmpFilePath
   }
 
+  /** try to delete files */
   static async unlinksSafe(paths: string[]) {
     const arr = paths.map(async (p) => {
       if (await FileHelper.checkFileExist(p)) {

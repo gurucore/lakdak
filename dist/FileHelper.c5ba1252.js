@@ -1,6 +1,6 @@
 var $d45e804977bc8ba0$exports = require("./CLIHelper.2a7c8d40.js");
 var $1f6d16a92569a9c9$exports = require("./UtilHelper.9c8080a7.js");
-var $bb2fd2799a25985b$exports = require("./NetworkHelper.3825d5fa.js");
+var $bb2fd2799a25985b$exports = require("./NetworkHelper.40cbfae3.js");
 var $72Ush$os = require("os");
 var $72Ush$path = require("path");
 var $72Ush$fs = require("fs");
@@ -69,7 +69,7 @@ class $d06b3bef2a4bf440$export$af3e19fefa989154 {
         const tmpFilePath = (0, ($parcel$interopDefault($72Ush$path))).join((0, ($parcel$interopDefault($72Ush$os))).tmpdir(), tmpFileName);
         return tmpFilePath;
     }
-    static async unlinksSafe(paths) {
+    /** try to delete files */ static async unlinksSafe(paths) {
         const arr = paths.map(async (p)=>{
             if (await $d06b3bef2a4bf440$export$af3e19fefa989154.checkFileExist(p)) await (0, $72Ush$fs.promises).unlink(p);
         });
@@ -99,4 +99,4 @@ class $d06b3bef2a4bf440$export$af3e19fefa989154 {
 }
 
 
-//# sourceMappingURL=FileHelper.8dc15927.js.map
+//# sourceMappingURL=FileHelper.c5ba1252.js.map

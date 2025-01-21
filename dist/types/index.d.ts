@@ -174,6 +174,7 @@ export class FileHelper {
      * @returns
      */
     static generateNewTempFilePath(prefix?: string, fileExtension?: string): string;
+    /** try to delete files */
     static unlinksSafe(paths: string[]): Promise<void[]>;
     /**
      * download remote file into local temp dir

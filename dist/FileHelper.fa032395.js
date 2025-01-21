@@ -1,6 +1,6 @@
 import {CLIHelper as $bc3e3f74c3e9a05d$export$73e2f76829f803fa} from "./CLIHelper.38bf3e35.js";
 import {UtilHelper as $2f2ded2a5b986c68$export$e616ecc10ddca3fa} from "./UtilHelper.f240c4c9.js";
-import {RawNetworkHelper as $81cf610d6b2220e4$export$4daadb33ccaded1} from "./NetworkHelper.144d93f0.js";
+import {RawNetworkHelper as $81cf610d6b2220e4$export$4daadb33ccaded1} from "./NetworkHelper.bdcba484.js";
 import $4Q4gs$os from "os";
 import $4Q4gs$path from "path";
 import {promises as $4Q4gs$promises, constants as $4Q4gs$constants} from "fs";
@@ -59,7 +59,7 @@ class $2067f62d46a56051$export$af3e19fefa989154 {
         const tmpFilePath = (0, $4Q4gs$path).join((0, $4Q4gs$os).tmpdir(), tmpFileName);
         return tmpFilePath;
     }
-    static async unlinksSafe(paths) {
+    /** try to delete files */ static async unlinksSafe(paths) {
         const arr = paths.map(async (p)=>{
             if (await $2067f62d46a56051$export$af3e19fefa989154.checkFileExist(p)) await (0, $4Q4gs$promises).unlink(p);
         });
@@ -90,4 +90,4 @@ class $2067f62d46a56051$export$af3e19fefa989154 {
 
 
 export {$2067f62d46a56051$export$af3e19fefa989154 as FileHelper};
-//# sourceMappingURL=FileHelper.4613ea61.js.map
+//# sourceMappingURL=FileHelper.fa032395.js.map

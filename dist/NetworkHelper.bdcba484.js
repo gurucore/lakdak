@@ -56,16 +56,16 @@ When you need the additional features these libraries provide (like automatic re
                 timeout: timeout,
                 headers: headers
             }, (response)=>{
-                // // Handle redirects
-                // if (response.statusCode === 301 || response.statusCode === 302) {
-                //   const redirectUrl = response.headers.location
-                //   if (!redirectUrl) {
-                //     reject(new DownloadError('Redirect location not provided', response.statusCode, urlString))
-                //     return
-                //   }
-                //   FileDownloader.download(redirectUrl, filePath, options).then(resolve).catch(reject)
-                //   return
-                // }
+                // Support download via http redirects
+                if (response.statusCode === 301 || response.statusCode === 302) {
+                    const redirectUrl = response.headers.location;
+                    if (!redirectUrl) {
+                        reject(new $81cf610d6b2220e4$export$946d4ce585efed41('Redirect location not provided', undefined, response.statusCode, urlString));
+                        return;
+                    }
+                    $81cf610d6b2220e4$export$4daadb33ccaded1.download(redirectUrl, filePath, options).then(resolve).catch(reject);
+                    return;
+                }
                 // Handle error status codes
                 if (response.statusCode !== 200) {
                     reject(new $81cf610d6b2220e4$export$946d4ce585efed41(`Raw download file error. ${response.statusCode}`, //
@@ -82,7 +82,6 @@ When you need the additional features these libraries provide (like automatic re
             });
             request.on('error', (err)=>{
                 fileStream.destroy();
-                // TODO: use FileHelper to delete files
                 (0, $ff45h$fs).unlink(filePath, ()=>{
                     reject(new $81cf610d6b2220e4$export$946d4ce585efed41(`Network error: ${err.message}`, err, undefined, urlString));
                 });
@@ -111,4 +110,4 @@ When you need the additional features these libraries provide (like automatic re
 
 
 export {$81cf610d6b2220e4$export$946d4ce585efed41 as DownloadError, $81cf610d6b2220e4$export$4daadb33ccaded1 as RawNetworkHelper};
-//# sourceMappingURL=NetworkHelper.144d93f0.js.map
+//# sourceMappingURL=NetworkHelper.bdcba484.js.map

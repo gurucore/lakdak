@@ -66,16 +66,16 @@ When you need the additional features these libraries provide (like automatic re
                 timeout: timeout,
                 headers: headers
             }, (response)=>{
-                // // Handle redirects
-                // if (response.statusCode === 301 || response.statusCode === 302) {
-                //   const redirectUrl = response.headers.location
-                //   if (!redirectUrl) {
-                //     reject(new DownloadError('Redirect location not provided', response.statusCode, urlString))
-                //     return
-                //   }
-                //   FileDownloader.download(redirectUrl, filePath, options).then(resolve).catch(reject)
-                //   return
-                // }
+                // Support download via http redirects
+                if (response.statusCode === 301 || response.statusCode === 302) {
+                    const redirectUrl = response.headers.location;
+                    if (!redirectUrl) {
+                        reject(new $bb2fd2799a25985b$export$946d4ce585efed41('Redirect location not provided', undefined, response.statusCode, urlString));
+                        return;
+                    }
+                    $bb2fd2799a25985b$export$4daadb33ccaded1.download(redirectUrl, filePath, options).then(resolve).catch(reject);
+                    return;
+                }
                 // Handle error status codes
                 if (response.statusCode !== 200) {
                     reject(new $bb2fd2799a25985b$export$946d4ce585efed41(`Raw download file error. ${response.statusCode}`, //
@@ -92,7 +92,6 @@ When you need the additional features these libraries provide (like automatic re
             });
             request.on('error', (err)=>{
                 fileStream.destroy();
-                // TODO: use FileHelper to delete files
                 (0, ($parcel$interopDefault($hQ9sW$fs))).unlink(filePath, ()=>{
                     reject(new $bb2fd2799a25985b$export$946d4ce585efed41(`Network error: ${err.message}`, err, undefined, urlString));
                 });
@@ -120,4 +119,4 @@ When you need the additional features these libraries provide (like automatic re
 }
 
 
-//# sourceMappingURL=NetworkHelper.3825d5fa.js.map
+//# sourceMappingURL=NetworkHelper.40cbfae3.js.map
