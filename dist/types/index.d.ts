@@ -115,10 +115,6 @@ export class CLIHelper {
      * @throws Error if process fails
      */
     static spawn(command: string, args?: string[], hint?: string, options?: ExtendedSpawnOptions): Promise<CLIResult>;
-    /**
-     * @deprecated This method is kept for backward compatible if there is a problem with new implementation.
-     */
-    static spawnOld(command: string, args?: string[], options?: SpawnOptions): Promise<unknown>;
 }
 export class UtilHelper {
     static createRandom(): string;
@@ -161,12 +157,12 @@ export class RawNetworkHelper {
     static download(urlString: string, filePath: string, options?: DownloadOptions): Promise<FileInfo>;
 }
 export class FileHelper {
+    /** use promise based access() API to check existence */
     static checkFileExist(filePath?: string): Promise<boolean>;
     /** return the extension, include the dot (.) */
     static getFileExtension(filePathOrURL?: string): string;
     /** copy files to OS temp dir  */
     static copyToTempDir(sourceFilePath: string): Promise<string>;
-    static clearTempDir(): Promise<void>;
     /**
      * Generate a temp filePath in side temp dir (but it is just the file path, no file content existed)
      * @param prefix prepend to the fileName

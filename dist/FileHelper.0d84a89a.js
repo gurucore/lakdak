@@ -1,4 +1,3 @@
-var $d45e804977bc8ba0$exports = require("./CLIHelper.2a7c8d40.js");
 var $1f6d16a92569a9c9$exports = require("./UtilHelper.c21f1cb5.js");
 var $2036d0ecb554b269$exports = require("./RawNetworkHelper.761de896.js");
 var $72Ush$os = require("os");
@@ -20,9 +19,8 @@ $parcel$export(module.exports, "FileHelper", () => $d06b3bef2a4bf440$export$af3e
 
 
 
-
 class $d06b3bef2a4bf440$export$af3e19fefa989154 {
-    static async checkFileExist(filePath) {
+    /** use promise based access() API to check existence */ static async checkFileExist(filePath) {
         if (!filePath) return false;
         try {
             await (0, $72Ush$fs.promises).access(filePath, (0, $72Ush$fs.constants).F_OK);
@@ -49,15 +47,6 @@ class $d06b3bef2a4bf440$export$af3e19fefa989154 {
             console.error(`Error copying file: ${err}`);
             throw err;
         }
-    }
-    static async clearTempDir() {
-        console.log('Clearing /tmp dir ...');
-        await (0, $d45e804977bc8ba0$exports.CLIHelper).exec('rm', [
-            '-rf',
-            (0, ($parcel$interopDefault($72Ush$os))).tmpdir() + '/*'
-        ], 'os.clearTempDir', {
-            cwd: (0, ($parcel$interopDefault($72Ush$os))).tmpdir()
-        });
     }
     /**
    * Generate a temp filePath in side temp dir (but it is just the file path, no file content existed)
@@ -99,4 +88,4 @@ class $d06b3bef2a4bf440$export$af3e19fefa989154 {
 }
 
 
-//# sourceMappingURL=FileHelper.e0cfcbf9.js.map
+//# sourceMappingURL=FileHelper.0d84a89a.js.map

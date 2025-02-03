@@ -10,7 +10,7 @@ export interface FileInfo {
   filePath: string
 }
 
-interface DownloadOptions {
+export interface DownloadOptions {
   timeout?: number
   headers?: Record<string, string>
 }

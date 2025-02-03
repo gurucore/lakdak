@@ -1,9 +1,7 @@
 import os from 'os'
 import path from 'path'
-
 import { promises as fsPromises, constants } from 'fs'
 
-import { CLIHelper } from './CLIHelper'
 import { DEBUG, UtilHelper } from './UtilHelper'
 import { RawNetworkHelper } from './RawNetworkHelper'
 

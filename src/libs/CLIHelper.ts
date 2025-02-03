@@ -3,20 +3,20 @@ import { promisify } from 'util'
 
 const execAsync = promisify(exec)
 
-interface CLIResult {
+export interface CLIResult {
   output: string
   error: string
   code?: number
   hint?: string
 }
 
-interface ExtendedSpawnOptions extends SpawnOptions {
+export interface ExtendedSpawnOptions extends SpawnOptions {
   /** Whether to throw an error on non-zero exit codes */
   throwOnError?: boolean
   /** Whether to log command execution */
   silent?: boolean
 }
-interface ExtendedExecOptions extends ExecOptions {
+export interface ExtendedExecOptions extends ExecOptions {
   /** Whether to throw an error on non-zero exit codes */
   throwOnError?: boolean
   /** Whether to log command execution */
@@ -83,7 +83,7 @@ It's not as comprehensive as "npm:shell-quote" but handles most common cases saf
       return {
         output: stdout.trim(),
         error: stderr.trim(),
-        hint,
+        hint
       } as CLIResult
     } catch (error) {
       throw new Error(`Exec CLI command failed: ${(error as any).message}`)
@@ -115,7 +115,7 @@ It's not as comprehensive as "npm:shell-quote" but handles most common cases saf
     const childProc = childSpawn(command, args, {
       // env,
       // cwd,
-      ...spawnOptions,
+      ...spawnOptions
     })
 
     const stdoutBuffers: Buffer[] = []
@@ -150,44 +150,6 @@ It's not as comprehensive as "npm:shell-quote" but handles most common cases saf
       })
 
       childProc.on('error', reject)
-    })
-  }
-
-  /**
-   * @deprecated This method is kept for backward compatible if there is a problem with new implementation.
-   */
-  static async spawnOld(command: string, args: string[] = [], options: SpawnOptions = {}) {
-    console.log(`Executing: ${command} ${args.join(' ')}`)
-
-    const childProc = childSpawn(command, args, {
-      env: options.env || process.env,
-      cwd: options.cwd || process.cwd(),
-      ...options,
-    })
-
-    const resultBuffers: Buffer[] = []
-
-    childProc.stdout.on('data', (buffer: Buffer) => {
-      console.log(buffer.toString())
-      resultBuffers.push(buffer)
-    })
-
-    childProc.stderr.on('data', (buffer: Buffer) => {
-      console.error(buffer.toString())
-    })
-
-    return new Promise((resolve, reject) => {
-      childProc.on('close', (code: number) => {
-        if (code === 0) {
-          resolve(Buffer.concat(resultBuffers).toString().trim())
-        } else {
-          reject(new Error(`${command} failed with exit code ${code}`))
-        }
-      })
-
-      childProc.on('error', (err: Error) => {
-        reject(err)
-      })
     })
   }
 }

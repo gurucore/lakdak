@@ -105,34 +105,7 @@ It's not as comprehensive as "npm:shell-quote" but handles most common cases saf
             childProc.on('error', reject);
         });
     }
-    /**
-   * @deprecated This method is kept for backward compatible if there is a problem with new implementation.
-   */ static async spawnOld(command, args = [], options = {}) {
-        console.log(`Executing: ${command} ${args.join(' ')}`);
-        const childProc = (0, $eWamL$child_process.spawn)(command, args, {
-            env: options.env || process.env,
-            cwd: options.cwd || process.cwd(),
-            ...options
-        });
-        const resultBuffers = [];
-        childProc.stdout.on('data', (buffer)=>{
-            console.log(buffer.toString());
-            resultBuffers.push(buffer);
-        });
-        childProc.stderr.on('data', (buffer)=>{
-            console.error(buffer.toString());
-        });
-        return new Promise((resolve, reject)=>{
-            childProc.on('close', (code)=>{
-                if (code === 0) resolve(Buffer.concat(resultBuffers).toString().trim());
-                else reject(new Error(`${command} failed with exit code ${code}`));
-            });
-            childProc.on('error', (err)=>{
-                reject(err);
-            });
-        });
-    }
 }
 
 
-//# sourceMappingURL=CLIHelper.2a7c8d40.js.map
+//# sourceMappingURL=CLIHelper.15969611.js.map
