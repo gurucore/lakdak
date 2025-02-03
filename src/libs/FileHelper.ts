@@ -5,7 +5,7 @@ import { promises as fsPromises, constants } from 'fs'
 
 import { CLIHelper } from './CLIHelper'
 import { DEBUG, UtilHelper } from './UtilHelper'
-import { RawNetworkHelper } from './NetworkHelper'
+import { RawNetworkHelper } from './RawNetworkHelper'
 
 export class FileHelper {
   static async checkFileExist(filePath?: string) {

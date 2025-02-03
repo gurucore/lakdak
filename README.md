@@ -26,19 +26,15 @@ https://vitest.dev
 
 ## Build for production release
 
-Type-Check, Compile and Minify for Production
+> Type-Check, Compile and Minify for Production
+> Support tree-shaking, each helper stays in its own file and can be imported separately
 
-> When introducing new class (helper), remember to export what you want to expose in `index.ts`
-
-```sh
-pnpm build
-```
-
-- Support tree-shaking, each helper stays in its own file and can be imported separately
+- When introducing new class (helper), remember to **export** what you want to expose in `index.ts`
 - Change `package.json` version
+- Run `pnpm build`
 - The output will be put to `/dist` (support both **ESM-MJS** and **CommonJS-CJS-UMD**)
 - commit the `.dist` folder to repo to publish it on Github
-- create new `versioned tag` for the release (E.g.: `v0.2.1`)
+- create new `versioned tag` for the release (E.g.: `v0.2.3`)
 
 # Usage
 

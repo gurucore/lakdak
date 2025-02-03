@@ -30,7 +30,7 @@ class $2f2ded2a5b986c68$export$e616ecc10ddca3fa {
    * Checks if a string is a valid file path. Just file name like "file" or "file.txt" is false. "c:/file" is true
    * @param str The string to check.
    */ static isLocalFilePath(str) {
-        if (!str) throw Error('str is empty');
+        if (!str) throw Error('argument "str" is empty');
         // Check if it's an absolute path or relative path
         if ((0, $iMCyM$path).isAbsolute(str) || str.startsWith('./') || str.startsWith('../')) return true;
         return false;
@@ -39,4 +39,4 @@ class $2f2ded2a5b986c68$export$e616ecc10ddca3fa {
 
 
 export {$2f2ded2a5b986c68$export$3f32c2013f0dcc1e as DEBUG, $2f2ded2a5b986c68$export$e616ecc10ddca3fa as UtilHelper};
-//# sourceMappingURL=UtilHelper.f240c4c9.js.map
+//# sourceMappingURL=UtilHelper.cfb13df6.js.map

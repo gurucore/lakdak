@@ -10,6 +10,7 @@ function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
 
+$parcel$export(module.exports, "DEBUG", () => $1f6d16a92569a9c9$export$3f32c2013f0dcc1e);
 $parcel$export(module.exports, "UtilHelper", () => $1f6d16a92569a9c9$export$e616ecc10ddca3fa);
 
 
@@ -40,7 +41,7 @@ class $1f6d16a92569a9c9$export$e616ecc10ddca3fa {
    * Checks if a string is a valid file path. Just file name like "file" or "file.txt" is false. "c:/file" is true
    * @param str The string to check.
    */ static isLocalFilePath(str) {
-        if (!str) throw Error('str is empty');
+        if (!str) throw Error('argument "str" is empty');
         // Check if it's an absolute path or relative path
         if ((0, ($parcel$interopDefault($Cj3nB$path))).isAbsolute(str) || str.startsWith('./') || str.startsWith('../')) return true;
         return false;
@@ -48,4 +49,4 @@ class $1f6d16a92569a9c9$export$e616ecc10ddca3fa {
 }
 
 
-//# sourceMappingURL=UtilHelper.9c8080a7.js.map
+//# sourceMappingURL=UtilHelper.c21f1cb5.js.map

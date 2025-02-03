@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest'
-import { RawNetworkHelper as target } from './NetworkHelper'
+import { RawNetworkHelper as target } from './RawNetworkHelper'
 import { FileHelper } from './FileHelper'
 import { TestHelper } from './TestHelper'
 

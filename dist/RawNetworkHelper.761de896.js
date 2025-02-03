@@ -1,8 +1,8 @@
 var $f6b600db55700cdd$exports = require("./CustomError.1083a31e.js");
-var $hQ9sW$http = require("http");
-var $hQ9sW$https = require("https");
-var $hQ9sW$fs = require("fs");
-var $hQ9sW$url = require("url");
+var $eWZQs$http = require("http");
+var $eWZQs$https = require("https");
+var $eWZQs$fs = require("fs");
+var $eWZQs$url = require("url");
 
 
 function $parcel$interopDefault(a) {
@@ -13,13 +13,13 @@ function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
 
-$parcel$export(module.exports, "RawNetworkHelper", () => $bb2fd2799a25985b$export$4daadb33ccaded1);
+$parcel$export(module.exports, "RawNetworkHelper", () => $2036d0ecb554b269$export$4daadb33ccaded1);
 
 
 
 
 
-class $bb2fd2799a25985b$export$946d4ce585efed41 extends (0, $f6b600db55700cdd$exports.CustomError) {
+class $2036d0ecb554b269$export$946d4ce585efed41 extends (0, $f6b600db55700cdd$exports.CustomError) {
     statusCode;
     url;
     constructor(message, error, statusCode, url, extra){
@@ -27,7 +27,7 @@ class $bb2fd2799a25985b$export$946d4ce585efed41 extends (0, $f6b600db55700cdd$ex
         this.name = 'DownloadError';
     }
 }
-class $bb2fd2799a25985b$export$4daadb33ccaded1 {
+class $2036d0ecb554b269$export$4daadb33ccaded1 {
     /**
    * This is stream download using raw http/https API
    * Real-world performance example for a 1GB file:
@@ -44,24 +44,24 @@ When you need the additional features these libraries provide (like automatic re
         // Validate and parse URL
         let url;
         try {
-            url = new (0, $hQ9sW$url.URL)(urlString);
+            url = new (0, $eWZQs$url.URL)(urlString);
         } catch (err) {
-            throw new $bb2fd2799a25985b$export$946d4ce585efed41(`Invalid URL: ${urlString}`, err, undefined, urlString);
+            throw new $2036d0ecb554b269$export$946d4ce585efed41(`Invalid URL: ${urlString}`, err, undefined, urlString);
         }
         // Validate protocol
-        if (url.protocol !== 'http:' && url.protocol !== 'https:') throw new $bb2fd2799a25985b$export$946d4ce585efed41(`Unsupported protocol: ${url.protocol}`);
+        if (url.protocol !== 'http:' && url.protocol !== 'https:') throw new $2036d0ecb554b269$export$946d4ce585efed41(`Unsupported protocol: ${url.protocol}`);
         // Ensure directory exists
         // const directory = path.dirname(filePath)
         // await fs.promises.mkdir(directory, { recursive: true })
         const { timeout: timeout = 30000, headers: headers = {} } = options;
         return new Promise((resolve, reject)=>{
-            const fileStream = (0, ($parcel$interopDefault($hQ9sW$fs))).createWriteStream(filePath);
+            const fileStream = (0, ($parcel$interopDefault($eWZQs$fs))).createWriteStream(filePath);
             let fileInfo = {
                 mime: '',
                 size: 0,
                 filePath: filePath
             };
-            const protocol = url.protocol === 'https:' ? (0, ($parcel$interopDefault($hQ9sW$https))) : (0, ($parcel$interopDefault($hQ9sW$http)));
+            const protocol = url.protocol === 'https:' ? (0, ($parcel$interopDefault($eWZQs$https))) : (0, ($parcel$interopDefault($eWZQs$http)));
             const request = protocol.get(url, {
                 timeout: timeout,
                 headers: headers
@@ -70,15 +70,15 @@ When you need the additional features these libraries provide (like automatic re
                 if (response.statusCode === 301 || response.statusCode === 302) {
                     const redirectUrl = response.headers.location;
                     if (!redirectUrl) {
-                        reject(new $bb2fd2799a25985b$export$946d4ce585efed41('Redirect location not provided', undefined, response.statusCode, urlString));
+                        reject(new $2036d0ecb554b269$export$946d4ce585efed41('Redirect location not provided', undefined, response.statusCode, urlString));
                         return;
                     }
-                    $bb2fd2799a25985b$export$4daadb33ccaded1.download(redirectUrl, filePath, options).then(resolve).catch(reject);
+                    $2036d0ecb554b269$export$4daadb33ccaded1.download(redirectUrl, filePath, options).then(resolve).catch(reject);
                     return;
                 }
                 // Handle error status codes
                 if (response.statusCode !== 200) {
-                    reject(new $bb2fd2799a25985b$export$946d4ce585efed41(`Raw download file error. ${response.statusCode}`, //
+                    reject(new $2036d0ecb554b269$export$946d4ce585efed41(`Raw download file error. ${response.statusCode}`, //
                     undefined, response.statusCode, urlString));
                     return;
                 }
@@ -92,15 +92,15 @@ When you need the additional features these libraries provide (like automatic re
             });
             request.on('error', (err)=>{
                 fileStream.destroy();
-                (0, ($parcel$interopDefault($hQ9sW$fs))).unlink(filePath, ()=>{
-                    reject(new $bb2fd2799a25985b$export$946d4ce585efed41(`Network error: ${err.message}`, err, undefined, urlString));
+                (0, ($parcel$interopDefault($eWZQs$fs))).unlink(filePath, ()=>{
+                    reject(new $2036d0ecb554b269$export$946d4ce585efed41(`Network error: ${err.message}`, err, undefined, urlString));
                 });
             });
             request.on('timeout', ()=>{
                 request.destroy();
                 fileStream.destroy();
-                (0, ($parcel$interopDefault($hQ9sW$fs))).unlink(filePath, ()=>{
-                    reject(new $bb2fd2799a25985b$export$946d4ce585efed41(`Download timed out after ${timeout}ms`, undefined, undefined, urlString));
+                (0, ($parcel$interopDefault($eWZQs$fs))).unlink(filePath, ()=>{
+                    reject(new $2036d0ecb554b269$export$946d4ce585efed41(`Download timed out after ${timeout}ms`, undefined, undefined, urlString));
                 });
             });
             // Handle successful download
@@ -110,8 +110,8 @@ When you need the additional features these libraries provide (like automatic re
             // Handle file system errors
             fileStream.on('error', (err)=>{
                 fileStream.destroy();
-                (0, ($parcel$interopDefault($hQ9sW$fs))).unlink(filePath, ()=>{
-                    reject(new $bb2fd2799a25985b$export$946d4ce585efed41(`File system error: ${err.message}`, err, undefined, urlString));
+                (0, ($parcel$interopDefault($eWZQs$fs))).unlink(filePath, ()=>{
+                    reject(new $2036d0ecb554b269$export$946d4ce585efed41(`File system error: ${err.message}`, err, undefined, urlString));
                 });
             });
         });
@@ -119,4 +119,4 @@ When you need the additional features these libraries provide (like automatic re
 }
 
 
-//# sourceMappingURL=NetworkHelper.40cbfae3.js.map
+//# sourceMappingURL=RawNetworkHelper.761de896.js.map

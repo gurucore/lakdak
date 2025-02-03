@@ -1,6 +1,6 @@
 var $d45e804977bc8ba0$exports = require("./CLIHelper.2a7c8d40.js");
-var $1f6d16a92569a9c9$exports = require("./UtilHelper.9c8080a7.js");
-var $bb2fd2799a25985b$exports = require("./NetworkHelper.40cbfae3.js");
+var $1f6d16a92569a9c9$exports = require("./UtilHelper.c21f1cb5.js");
+var $2036d0ecb554b269$exports = require("./RawNetworkHelper.761de896.js");
 var $72Ush$os = require("os");
 var $72Ush$path = require("path");
 var $72Ush$fs = require("fs");
@@ -43,7 +43,7 @@ class $d06b3bef2a4bf440$export$af3e19fefa989154 {
         const tmpFilePath = (0, ($parcel$interopDefault($72Ush$path))).join((0, ($parcel$interopDefault($72Ush$os))).tmpdir(), tmpFileName);
         try {
             await (0, $72Ush$fs.promises).copyFile(sourceFilePath, tmpFilePath);
-            // DEBUG(`File copied: ${sourceFilePath} => ${tmpFilePath}`)
+            (0, $1f6d16a92569a9c9$exports.DEBUG)(`File copied: ${sourceFilePath} => ${tmpFilePath}`);
             return tmpFilePath;
         } catch (err) {
             console.error(`Error copying file: ${err}`);
@@ -80,17 +80,17 @@ class $d06b3bef2a4bf440$export$af3e19fefa989154 {
    * @param link
    * @returns local temp file path
    */ static async cacheRemoteUrl(link) {
-        if (!link) throw new Error(`${link} is empty, neither URL nor localFile`);
+        if (!link) throw new Error(`argument link:${link} is empty, neither URL nor localFile`);
         if ((0, $1f6d16a92569a9c9$exports.UtilHelper).isLocalFilePath(link)) return link // already in local, no need to download
         ;
-        if (!(0, $1f6d16a92569a9c9$exports.UtilHelper).isURL(link)) throw new Error(`${link} is neither URL nor localFile`);
+        if (!(0, $1f6d16a92569a9c9$exports.UtilHelper).isURL(link)) throw new Error(`argument link:${link} is neither URL nor localFile`);
         const url = link;
         // https://vbee-studio-tmp.s3.ap-southeast-1.amazonaws.com/voice-cloning/voices/6765858815ba1ce0979a8b35/filename.wav ==> filename.wav
         const fileName = (0, ($parcel$interopDefault($72Ush$path))).basename(link) // = link.split('/').slice(-1)[0]
         ;
         const outputFilePath = $d06b3bef2a4bf440$export$af3e19fefa989154.generateNewTempFilePath('temp-cached_', '_' + fileName);
         try {
-            await (0, $bb2fd2799a25985b$exports.RawNetworkHelper).download(url, outputFilePath);
+            await (0, $2036d0ecb554b269$exports.RawNetworkHelper).download(url, outputFilePath);
         } catch (err) {
             console.error('Error: 404 not Found: ', url, err.code);
         }
@@ -99,4 +99,4 @@ class $d06b3bef2a4bf440$export$af3e19fefa989154 {
 }
 
 
-//# sourceMappingURL=FileHelper.c5ba1252.js.map
+//# sourceMappingURL=FileHelper.e0cfcbf9.js.map

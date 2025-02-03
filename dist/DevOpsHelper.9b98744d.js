@@ -1,24 +1,14 @@
-var $hpNod$os = require("os");
+import $kBhdp$os from "os";
 
-
-function $parcel$interopDefault(a) {
-  return a && a.__esModule ? a.default : a;
-}
-
-function $parcel$export(e, n, v, s) {
-  Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
-}
-
-$parcel$export(module.exports, "default", () => $24eda3839f56b77d$export$2e2bcd8739ae039);
 /// <reference types="node" />
 
-class $24eda3839f56b77d$export$2e2bcd8739ae039 {
+class $aba35eb4cd0025e5$export$2e2bcd8739ae039 {
     /**
    * Get current server IP address
    * @param ipType "v4" or "v6"
    * @returns
    */ static getCurrentServerIpAddresses(ipType = 'v4') {
-        const networkInterfaces = Object.values((0, ($parcel$interopDefault($hpNod$os))).networkInterfaces()).reduce((r, a)=>{
+        const networkInterfaces = Object.values((0, $kBhdp$os).networkInterfaces()).reduce((r, a)=>{
             r = r.concat(a);
             return r;
         }, []).filter(({ family: family, address: address })=>{
@@ -39,4 +29,5 @@ class $24eda3839f56b77d$export$2e2bcd8739ae039 {
 }
 
 
-//# sourceMappingURL=DevOpsHelper.5b2e13e7.js.map
+export {$aba35eb4cd0025e5$export$2e2bcd8739ae039 as default};
+//# sourceMappingURL=DevOpsHelper.9b98744d.js.map
