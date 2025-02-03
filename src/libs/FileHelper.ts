@@ -38,7 +38,7 @@ export class FileHelper {
 
     try {
       await fsPromises.copyFile(sourceFilePath, tmpFilePath)
-      // DEBUG(`File copied: ${sourceFilePath} => ${tmpFilePath}`)
+      DEBUG(`File copied: ${sourceFilePath} => ${tmpFilePath}`)
       return tmpFilePath
     } catch (err) {
       console.error(`Error copying file: ${err}`)
@@ -81,14 +81,14 @@ export class FileHelper {
    * @returns local temp file path
    */
   static async cacheRemoteUrl(link: string) {
-    if (!link) throw new Error(`${link} is empty, neither URL nor localFile`)
+    if (!link) throw new Error(`argument link:${link} is empty, neither URL nor localFile`)
 
     if (UtilHelper.isLocalFilePath(link)) {
       return link // already in local, no need to download
     }
 
     if (!UtilHelper.isURL(link)) {
-      throw new Error(`${link} is neither URL nor localFile`)
+      throw new Error(`argument link:${link} is neither URL nor localFile`)
     }
 
     const url = link

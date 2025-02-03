@@ -40,7 +40,7 @@ export class UtilHelper {
    * @param str The string to check.
    */
   static isLocalFilePath(str: string): boolean {
-    if (!str) throw Error('str is empty')
+    if (!str) throw Error('argument "str" is empty')
 
     // Check if it's an absolute path or relative path
     if (path.isAbsolute(str) || str.startsWith('./') || str.startsWith('../')) {
