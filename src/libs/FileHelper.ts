@@ -8,6 +8,7 @@ import { DEBUG, UtilHelper } from './UtilHelper'
 import { RawNetworkHelper } from './RawNetworkHelper'
 
 export class FileHelper {
+  /** use promise based access() API to check existence */
   static async checkFileExist(filePath?: string) {
     if (!filePath) return false
 
@@ -44,11 +45,6 @@ export class FileHelper {
       console.error(`Error copying file: ${err}`)
       throw err
     }
-  }
-
-  static async clearTempDir() {
-    console.log('Clearing /tmp dir ...')
-    await CLIHelper.exec('rm', ['-rf', os.tmpdir() + '/*'], 'os.clearTempDir', { cwd: os.tmpdir() })
   }
 
   /**
