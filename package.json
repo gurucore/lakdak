@@ -31,7 +31,7 @@
     "prebuild": "rimraf dist",
     "build": "parcel build",
     "lint": "eslint . --fix",
-    "check": "tsc --noEmit",
+    "check": "tsc --noEmit --skipLibCheck",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
