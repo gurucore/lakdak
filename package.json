@@ -29,31 +29,30 @@
   "scripts": {
     "dev": "parcel watch",
     "prebuild": "rimraf dist",
-    "build": "parcel build",
     "lint": "eslint . --fix",
     "check": "tsc --noEmit --skipLibCheck",
+    "build": "parcel build",
     "test": "vitest",
-    "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "coverage": "vitest run --coverage",
-    "ci": "pnpm build && pnpm test && pnpm lint && pnpm check"
+    "release": "npm run lint && npm run check && npm run test:run && npm run build"
   },
   "peerDependencies": {
     "nanoid": "^5.0.0"
   },
   "devDependencies": {
+    "@parcel/bundler-library": "latest",
     "@parcel/config-default": "latest",
     "@parcel/packager-ts": "latest",
-    "@parcel/bundler-library": "latest",
     "@parcel/transformer-typescript-tsc": "latest",
     "@parcel/transformer-typescript-types": "latest",
     "@types/node": "^22.10.7",
-    "vitest": "^2.1.8",
-    "@vitest/ui": "^2.1.8",
+    "eslint": "latest",
     "husky": "^8.0.3",
     "parcel": "latest",
     "rimraf": "latest",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "latest"
   },
   "husky": {
     "hooks": {
@@ -61,7 +60,6 @@
     }
   },
   "stackblitz": {
-    "startCommand": "pnpm test:ui"
-  },
-  "dependencies": {}
+    "startCommand": "pnpm test:run"
+  }
 }
