@@ -85,7 +85,47 @@ class $d06b3bef2a4bf440$export$af3e19fefa989154 {
         }
         return outputFilePath;
     }
+    /**
+   * write content to file
+   * @param content
+   * @param filePath
+   * @returns written filePath, or undefined if error
+   */ static async writeDataToFile(content, filePath) {
+        if (!filePath) return;
+        if (!content) return;
+        try {
+            await (0, $72Ush$fs.promises).writeFile(filePath, content);
+            return filePath;
+        } catch (err) {
+            console.error(`Failed to save content to file ${filePath}`, {
+                filePath: filePath,
+                error: err
+            });
+        }
+    }
+    /**
+   * pipe stream to file
+   * @param readableStream
+   * @param filePath
+   * @returns written filePath, throw if error
+   */ static async writeStreamToFile(readableStream, filePath) {
+        if (!filePath) return;
+        if (!readableStream) return;
+        return new Promise((resolve, reject)=>{
+            const writableStream = (0, $72Ush$fs.createWriteStream)(filePath);
+            readableStream.on('error', (err)=>{
+                reject(err);
+            });
+            writableStream.on('error', (err)=>{
+                reject(err);
+            });
+            writableStream.on('finish', ()=>{
+                resolve(filePath);
+            });
+            readableStream.pipe(writableStream);
+        });
+    }
 }
 
 
-//# sourceMappingURL=FileHelper.0d84a89a.js.map
+//# sourceMappingURL=FileHelper.5934dc86.js.map

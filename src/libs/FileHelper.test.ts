@@ -2,6 +2,7 @@ import { it, expect, describe } from 'vitest'
 import path from 'path'
 import { FileHelper as target } from './FileHelper'
 import { TestHelper } from './TestHelper'
+import { createReadStream } from 'fs'
 
 describe('FileHelper', () => {
   describe('checkFileExist', () => {
@@ -14,12 +15,9 @@ describe('FileHelper', () => {
 
   describe('copyToTempDir', () => {
     it('copyToTempDir', async () => {
-      const audioFilePrefix = 'ngochuyen_test001_'
-      const formattedNumber = (1).toString().padStart(2, '0')
-      const fileName = `${audioFilePrefix}${formattedNumber}.wav`
-      const sourceFilePath = path.join(process.cwd(), './.data/audio', fileName)
+      const tempFiles = await TestHelper.createTempFilesToTest(1, 'small')
 
-      const targetFilePath = await target.copyToTempDir(sourceFilePath)
+      const targetFilePath = await target.copyToTempDir(tempFiles[0])
 
       expect(targetFilePath).not.toBeUndefined()
       expect(target.checkFileExist(targetFilePath)).toBeTruthy()
@@ -53,6 +51,36 @@ describe('FileHelper', () => {
   describe('cacheRemoteUrl', () => {
     it('exist file should be downloaded into temp folder', async () => {
       expect(await target.cacheRemoteUrl(TestHelper.ExistingInternetFileUrl)).contain(path.basename(TestHelper.ExistingInternetFileUrl))
+    })
+  })
+
+  describe('writeDataToFile', () => {
+    it('write some string to file', async () => {
+      const tempFilePath = target.generateNewTempFilePath()
+      await target.writeDataToFile('test', tempFilePath)
+
+      expect(await target.checkFileExist(tempFilePath)).toBeTruthy()
+    })
+
+    it('null path or content should be undefined', async () => {
+      const tempFilePath = target.generateNewTempFilePath()
+      await target.writeDataToFile(null, tempFilePath)
+      expect(await target.checkFileExist(tempFilePath)).toBeFalsy()
+
+      const filePath = await target.writeDataToFile('some string', null)
+      expect(filePath).toBeUndefined()
+    })
+  })
+
+  describe('writeStreamToFile', () => {
+    it('write stream to file', async () => {
+      const tempFiles = await TestHelper.createTempFilesToTest(1, 'small')
+      const readableStream = createReadStream(tempFiles[0])
+
+      const tempFilePathTarget = target.generateNewTempFilePath()
+      await target.writeStreamToFile(readableStream, tempFilePathTarget)
+
+      expect(await target.checkFileExist(tempFilePathTarget)).toBeTruthy()
     })
   })
 })

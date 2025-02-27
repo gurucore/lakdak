@@ -1,6 +1,7 @@
 import os from 'os'
 import path from 'path'
-import { promises as fsPromises, constants } from 'fs'
+import { Readable } from 'stream'
+import { promises as fsPromises, constants, createWriteStream } from 'fs'
 
 import { DEBUG, UtilHelper } from './UtilHelper'
 import { RawNetworkHelper } from './RawNetworkHelper'
@@ -97,5 +98,50 @@ export class FileHelper {
     }
 
     return outputFilePath
+  }
+
+  /**
+   * write content to file
+   * @param content
+   * @param filePath
+   * @returns written filePath, or undefined if error
+   */
+  static async writeDataToFile(content: string | Buffer, filePath: string) {
+    if (!filePath) return
+    if (!content) return
+
+    try {
+      await fsPromises.writeFile(filePath, content)
+      return filePath
+    } catch (err) {
+      console.error(`Failed to save content to file ${filePath}`, { filePath, error: err })
+    }
+  }
+
+  /**
+   * pipe stream to file
+   * @param readableStream
+   * @param filePath
+   * @returns written filePath, throw if error
+   */
+  static async writeStreamToFile(readableStream: Readable, filePath: string) {
+    if (!filePath) return
+    if (!readableStream) return
+
+    return new Promise((resolve, reject) => {
+      const writableStream = createWriteStream(filePath)
+
+      readableStream.on('error', (err) => {
+        reject(err)
+      })
+      writableStream.on('error', (err) => {
+        reject(err)
+      })
+      writableStream.on('finish', () => {
+        resolve(filePath)
+      })
+
+      readableStream.pipe(writableStream)
+    })
   }
 }

@@ -16,7 +16,7 @@ export class TestHelper {
    * @param sampleFileType default is "small"
    * @returns
    */
-  async createTempFilesToTest(length: number = 2, sampleFileType: 'small' | 'medium' = 'small'): Promise<string[]> {
+  static async createTempFilesToTest(length: number = 2, sampleFileType: 'small' | 'medium' = 'small'): Promise<string[]> {
     const filesPromises = Array.from({ length }, async (_, i) => {
       const audioFilePrefix = sampleTypeMap[sampleFileType]
 

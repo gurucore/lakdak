@@ -2,7 +2,7 @@ import {DEBUG as $2f2ded2a5b986c68$export$3f32c2013f0dcc1e, UtilHelper as $2f2de
 import {RawNetworkHelper as $c37ead06c04bb665$export$4daadb33ccaded1} from "./RawNetworkHelper.da955a3c.js";
 import $4Q4gs$os from "os";
 import $4Q4gs$path from "path";
-import {promises as $4Q4gs$promises, constants as $4Q4gs$constants} from "fs";
+import {promises as $4Q4gs$promises, constants as $4Q4gs$constants, createWriteStream as $4Q4gs$createWriteStream} from "fs";
 
 
 
@@ -75,8 +75,48 @@ class $2067f62d46a56051$export$af3e19fefa989154 {
         }
         return outputFilePath;
     }
+    /**
+   * write content to file
+   * @param content
+   * @param filePath
+   * @returns written filePath, or undefined if error
+   */ static async writeDataToFile(content, filePath) {
+        if (!filePath) return;
+        if (!content) return;
+        try {
+            await (0, $4Q4gs$promises).writeFile(filePath, content);
+            return filePath;
+        } catch (err) {
+            console.error(`Failed to save content to file ${filePath}`, {
+                filePath: filePath,
+                error: err
+            });
+        }
+    }
+    /**
+   * pipe stream to file
+   * @param readableStream
+   * @param filePath
+   * @returns written filePath, throw if error
+   */ static async writeStreamToFile(readableStream, filePath) {
+        if (!filePath) return;
+        if (!readableStream) return;
+        return new Promise((resolve, reject)=>{
+            const writableStream = (0, $4Q4gs$createWriteStream)(filePath);
+            readableStream.on('error', (err)=>{
+                reject(err);
+            });
+            writableStream.on('error', (err)=>{
+                reject(err);
+            });
+            writableStream.on('finish', ()=>{
+                resolve(filePath);
+            });
+            readableStream.pipe(writableStream);
+        });
+    }
 }
 
 
 export {$2067f62d46a56051$export$af3e19fefa989154 as FileHelper};
-//# sourceMappingURL=FileHelper.a733c498.js.map
+//# sourceMappingURL=FileHelper.f65f65f4.js.map

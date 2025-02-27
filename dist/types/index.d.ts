@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { ExecOptions, SpawnOptions } from "child_process";
+import { Readable } from "stream";
 /**
  * Helper to inspect, check, analyse command send to chatbot
  */
@@ -178,6 +179,20 @@ export class FileHelper {
      * @returns local temp file path
      */
     static cacheRemoteUrl(link: string): Promise<string>;
+    /**
+     * write content to file
+     * @param content
+     * @param filePath
+     * @returns written filePath, or undefined if error
+     */
+    static writeDataToFile(content: string | Buffer, filePath: string): Promise<string>;
+    /**
+     * pipe stream to file
+     * @param readableStream
+     * @param filePath
+     * @returns written filePath, throw if error
+     */
+    static writeStreamToFile(readableStream: Readable, filePath: string): Promise<unknown>;
 }
 
 //# sourceMappingURL=index.d.ts.map

@@ -1,13 +1,13 @@
 {
   "name": "lakdak",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "keywords": [
     "node",
     "nodejs",
     "lockevn"
   ],
   "description": "Library for common utils in NodeJS to develop backend web API",
-  "releasenote": "Distributing separate files (for each class) can improve tree shaking in end applications. Setup project to build and output ES and UMD module. Add new Helpers: File CLI RawNetwork Util",
+  "releasenote": "FileHelper support write data (content/stream) to file. Distributing separate files (for each class) can improve tree shaking in end applications. Setup project to build and output ES and UMD module. Add new Helpers: File CLI RawNetwork Util",
   "author": "lockevn",
   "license": "UNLICENSED",
   "engines": {
@@ -46,12 +46,12 @@
     "@parcel/packager-ts": "latest",
     "@parcel/transformer-typescript-tsc": "latest",
     "@parcel/transformer-typescript-types": "latest",
-    "@types/node": "^22.10.7",
+    "@types/node": "latest",
     "eslint": "latest",
-    "husky": "^8.0.3",
+    "husky": "latest",
     "parcel": "latest",
     "rimraf": "latest",
-    "typescript": "^5.7.3",
+    "typescript": "latest",
     "vitest": "latest"
   },
   "husky": {
