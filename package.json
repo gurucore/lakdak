@@ -1,6 +1,6 @@
 {
   "name": "lakdak",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "keywords": [
     "node",
     "nodejs",
@@ -11,11 +11,12 @@
   "author": "lockevn",
   "license": "UNLICENSED",
   "engines": {
-    "node": ">=16.x"
+    "node": ">=20.x"
   },
   "files": [
     "dist"
   ],
+  "type": "module",
   "source": "src/index.ts",
   "main": "./dist/lakdak.umd.cjs",
   "module": "./dist/lakdak.es.mjs",

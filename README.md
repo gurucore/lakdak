@@ -70,3 +70,14 @@ To benefit tree-shaking, add this to `tsconfig.json`
   }
 }
 ```
+
+## NOTE about package.json - "type": "module"
+
+Make this library intended to be consumed as an ES module.
+This setting ensures that Node.js treats .js files as ES modules by default.
+
+We want to support both CommonJS and ES module consumers
+The build process outputs both module formats (already does this by specifying both main and module fields)
+
+- CommonJS consumers to use the main entry point
+- and ES module consumers to use the module entry point.
