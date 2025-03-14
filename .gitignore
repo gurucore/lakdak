@@ -28,7 +28,7 @@ dist-ssr
 *.sln
 *.sw?
 
-
+dist
 .parcel-cache
 .cache
 coverage
