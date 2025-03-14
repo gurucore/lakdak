@@ -1,6 +1,6 @@
 {
   "name": "lakdak",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "keywords": [
     "node",
     "nodejs",
@@ -35,8 +35,8 @@
     "build": "parcel build",
     "test": "vitest",
     "test:run": "vitest run",
-    "coverage": "vitest run --coverage",
-    "release": "npm run lint && npm run check && npm run test:run && npm run build"
+    "ci": "npm run check && npm run test:run",
+    "release": "npm run check && npm run build"
   },
   "peerDependencies": {
     "nanoid": "^5.0.0"
@@ -57,7 +57,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pnpm build && pnpm test:run"
+      "pre-commit": "npm run lint && npm run build && pnpm test:run"
     }
   },
   "stackblitz": {
