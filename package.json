@@ -1,9 +1,12 @@
 {
-  "name": "lakdak",
-  "version": "0.4.0",
+  "name": "@gurucore/lakdak",
+  "version": "0.5.0",
   "keywords": [
     "node",
     "nodejs",
+    "javascript",
+    "typescript",
+    "shared-library",
     "lockevn"
   ],
   "description": "Library for common utils in NodeJS to develop backend web API",
@@ -12,6 +15,10 @@
   "license": "UNLICENSED",
   "engines": {
     "node": ">=20.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gurucore/lakdak.git"
   },
   "files": [
     "dist"

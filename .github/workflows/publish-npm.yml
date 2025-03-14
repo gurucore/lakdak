@@ -1,4 +1,4 @@
-name: Publish to Github npm
+name: Publish to npmjs
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
 # Workflow-level environment variables (available to all jobs)
 env:
   ENVIRONMENT: production
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure you have a GITHUB_TOKEN secret in your GitHub repository
-  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure you have an NPM_TOKEN secret in your GitHub repository
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # Ensure you have a NPM_TOKEN secret in your GitHub repository
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Ensure you have a NPM_TOKEN secret in your GitHub repository
 
 jobs:
   publish:
@@ -25,5 +25,5 @@ jobs:
       - name: Run build script for releasing
         run: npm run release
 
-      - name: Publish to npm
-        run: npm publish
+      - name: Publish to npmjs as public visible
+        run: npm publish --access public

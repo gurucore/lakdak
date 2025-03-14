@@ -9,8 +9,8 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: 20
-        registry-url: 'https://npm.pkg.github.com'
-        scope: '@vbee-holding'
+        registry-url: 'https://registry.npmjs.org/' # npm registry
+        scope: '@gurucore'
 
     - name: Install dependencies
       # ci Installs dependencies strictly based on the lockfile, ensuring reproducibility., Ensures exact versions, does not modify lockfile
