@@ -2,48 +2,13 @@
 
 **Common and best practices** code are accumulated here in a NodeJS Lib for writting backend (API) services
 
-- Parcel to build https://dev.to/ihaback/create-your-own-typescript-library-with-parceljs-3dh7
-- _pnpm_ for package management
-
-## Project Setup for contribution
-
-```sh
-pnpm i
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-## Test
-
-https://vitest.dev
-
-- blazing fast unit test
-- Run `pnpm test` (watch mode) and change a test or source code to see HMR in action!
-
-## Build for production release
-
-> Support Type-Check, Compile and Minify for Production
-> Support tree-shaking, each helper stays in its own file and can be imported separately
-> Build to output both ES and UMD module.
-
-1. When introducing new class that need to expose, remember to **export** what you want to expose in `index.ts`
-1. Change `package.json` version string
-
-- every push to repo will run CI check (`npm run ci` type check and unit test).
-
-  - To skip CI check build, add `skipCI` to commit message
-
-- create a tag (start with `v` and `semver` like v0.0.1) will `npm run build` and create a package on Github Packages https://github.com/vbee-holding/vbee-node-shared-lib/packages
-
 # Usage
 
-In any TypeScript (or JavaScript) project, developer uses lakdak by add deps:
+In any TypeScript (or JavaScript) project, run:
 
-`"lakdak": "github:gurucore/lakdak#v0.1.0"`
+`npm i lakdak`
+
+Then in your code
 
 ```js
 import { FileHelper } from 'lakdak'
@@ -73,6 +38,43 @@ To benefit tree-shaking, add this to `tsconfig.json`
   }
 }
 ```
+
+# Developments
+
+- Parcel to build https://dev.to/ihaback/create-your-own-typescript-library-with-parceljs-3dh7
+- _pnpm_ for package management
+- [Vitest](https://vitest.dev)
+
+### Project Setup for contribution
+
+```sh
+pnpm i
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+pnpm dev
+```
+
+## Test
+
+- Run `pnpm test` (watch mode) and change a test or source code to see HMR in action!
+
+## Build for production release
+
+> Support Type-Check, Compile and Minify for Production
+> Support tree-shaking, each helper stays in its own file and can be imported separately
+> Build to output both ES and UMD module.
+
+1. When introducing new class that need to expose, remember to **export** what you want to expose in `index.ts`
+1. Change `package.json` version string
+
+- every push to repo will run CI check (`npm run ci` type check and unit test).
+
+  - To skip CI check build, add `skipCI` to commit message
+
+- create a tag (start with `v` and `semver` like v0.0.1) will `npm run build` and create a package on Github Packages https://github.com/vbee-holding/vbee-node-shared-lib/packages
 
 ### NOTE about package.json - "type": "module"
 
