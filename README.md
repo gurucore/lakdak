@@ -21,7 +21,7 @@ If you cannot see the code suggestion (with comment), add this to `tsconfig.json
 {
   "compilerOptions": {
     "paths": {
-      "lakdak": ["./node_modules/lakdak/dist/types/index.d.ts"]
+      "@gurucore/lakdak": ["./node_modules/@gurucore/lakdak/dist/types/index.d.ts"]
     } // tells TypeScript: "When you see an import for 'lakdak', look exactly here for the types"
   }
 }
