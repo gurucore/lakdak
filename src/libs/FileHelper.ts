@@ -3,8 +3,10 @@ import path from 'path'
 import { Readable } from 'stream'
 import { promises as fsPromises, constants, createWriteStream } from 'fs'
 
-import { DEBUG, UtilHelper } from './UtilHelper'
 import { RawNetworkHelper } from './RawNetworkHelper'
+import { CommonHelper } from 'gachchan'
+
+import { DEBUG } from './Utils'
 
 export class FileHelper {
   /** use promise based access() API to check existence */
@@ -27,6 +29,20 @@ export class FileHelper {
   static getFileExtension(filePathOrURL?: string) {
     if (!filePathOrURL) return ''
     return path.extname(filePathOrURL)
+  }
+
+  /**
+   * Checks if a string is a valid file path. Just file name like "file" or "file.txt" is false. "c:/file" is true
+   * @param str The string to check.
+   */
+  static isLocalFilePath(str: string): boolean {
+    if (!str) throw Error('argument "str" is empty')
+
+    // Check if it's an absolute path or relative path
+    if (path.isAbsolute(str) || str.startsWith('./') || str.startsWith('../')) {
+      return true
+    }
+    return false
   }
 
   /** copy files to OS temp dir  */
@@ -53,7 +69,7 @@ export class FileHelper {
    * @returns
    */
   static generateNewTempFilePath(prefix: string = '', fileExtension = '') {
-    const tmpFileName = `${prefix}${UtilHelper.createRandom()}${fileExtension}`
+    const tmpFileName = `${prefix}${CommonHelper.createRandomString()}${fileExtension}`
     const tmpFilePath = path.join(os.tmpdir(), tmpFileName)
 
     return tmpFilePath
@@ -78,11 +94,11 @@ export class FileHelper {
   static async cacheRemoteUrl(link: string) {
     if (!link) throw new Error(`argument link:${link} is empty, neither URL nor localFile`)
 
-    if (UtilHelper.isLocalFilePath(link)) {
+    if (FileHelper.isLocalFilePath(link)) {
       return link // already in local, no need to download
     }
 
-    if (!UtilHelper.isURL(link)) {
+    if (!CommonHelper.isURL(link)) {
       throw new Error(`argument link:${link} is neither URL nor localFile`)
     }
 

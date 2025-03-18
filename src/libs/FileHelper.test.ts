@@ -83,4 +83,24 @@ describe('FileHelper', () => {
       expect(await target.checkFileExist(tempFilePathTarget)).toBeTruthy()
     })
   })
+
+  describe('isLocalFilePath', () => {
+    it('URL should be false', async () => {
+      expect(target.isLocalFilePath('https://vbee-studio-tmp.s3.ap-southeast-1.amazonaws.com/voice-cloning/voices/67658588134998803328.wav')).toBeFalsy()
+
+      expect(target.isLocalFilePath(TestHelper.SampleDomainUrl)).toBeFalsy()
+    })
+
+    it('filename ONLY should be false', async () => {
+      expect(target.isLocalFilePath('file')).toBeFalsy()
+      expect(target.isLocalFilePath('filename.ext')).toBeFalsy()
+    })
+
+    it('file should be true', async () => {
+      expect(target.isLocalFilePath('/https')).toBeTruthy()
+      expect(target.isLocalFilePath('./https.txt')).toBeTruthy()
+      expect(target.isLocalFilePath('../https.txt')).toBeTruthy()
+      expect(target.isLocalFilePath('/mnt/test/https.txt')).toBeTruthy()
+    })
+  })
 })

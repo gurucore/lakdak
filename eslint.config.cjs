@@ -7,10 +7,12 @@ module.exports = {
     'node_modules',
     '.parcel-cache',
     'dist',
+    'coverage',
+    //
     '.eslintrc.js',
+    'eslint.config.cjs',
     'package.json',
-    'package-lock.json',
-    'coverage'
+    'package-lock.json'
     //
   ]
 }
