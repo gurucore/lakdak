@@ -1,8 +1,24 @@
-/// <reference types="node" />
-
 import crypto from 'crypto'
+import { SecurityError, ValidationError } from '../models/CustomError'
 
-export default class SecurityHelper {
+export interface SecurityConfig {
+  /** effective key size 2048 bit (good until 2030), after 2030, use 3072 bit */
+  rsaKeySize: number
+
+  /** validation for the hash method to prevent potential DoS attacks */
+  maxHashInputSize: number
+}
+
+export class SecurityHelper {
+  private static config: SecurityConfig = {
+    rsaKeySize: 2048,
+    maxHashInputSize: 10 * 1024 * 1024 // 1MB
+  }
+
+  static setConfig(config: Partial<SecurityConfig>): void {
+    this.config = { ...this.config, ...config }
+  }
+
   /**
    *
    * @param input
@@ -16,11 +32,41 @@ export default class SecurityHelper {
   }
 
   /**
+   * Safer async hashing, with validating input size, with salt support to prevent rainbow table attacks
+   * @param input with validating input size
+   * @param algorithm  "sha1" "sha256"
+   * @param salt prevent rainbow table attacks
+   * @returns hex string
+   */
+  static async hashAsync(input: crypto.BinaryLike, algorithm = 'sha256', salt?: string) {
+    if (!this.validateInput(input, this.config.maxHashInputSize)) {
+      throw new ValidationError('Input size exceeds maximum allowed size')
+    }
+
+    const finalSalt = salt || (await this.generateSalt())
+    const hash = crypto.createHash(algorithm)
+
+    return new Promise((resolve, reject) => {
+      try {
+        hash.update(finalSalt)
+        hash.update(input)
+        resolve(hash.digest('hex'))
+      } catch (error) {
+        reject(new SecurityError('Failed to generate hash', { error }))
+      }
+    })
+  }
+
+  /**
    *
    * @param modulusLength effective key size 2048 bit (good until 2030), after 2030, use 3072 bit
    * @returns keypair: object of public and private
    */
-  static generateRSAKeyPair(modulusLength = 2048): { publicKey: string | Buffer; privateKey: string | Buffer } {
+  static generateRSAKeyPair(modulusLength: number = this.config.rsaKeySize): { publicKey: string | Buffer; privateKey: string | Buffer } {
+    if (modulusLength < 2048) {
+      throw new SecurityError('RSA key size must be at least 2048 bits')
+    }
+
     const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
       modulusLength,
       publicKeyEncoding: {
@@ -42,7 +88,7 @@ export default class SecurityHelper {
    * @param plainText
    * @returns String base64 format
    */
-  static encryptText(publicKey, plainText: string): string {
+  static encryptText(publicKey: string | Buffer, plainText: string): string {
     const encryptedData = crypto.publicEncrypt(
       {
         key: publicKey,
@@ -61,7 +107,7 @@ export default class SecurityHelper {
    * @param encryptedTextBase64 String in base64 format
    * @returns utf-8 string
    */
-  static decryptText(privateKey, encryptedTextBase64: string): string {
+  static decryptText(privateKey: string | Buffer, encryptedTextBase64: string): string {
     const decryptedData = crypto.privateDecrypt(
       {
         key: privateKey,
@@ -74,5 +120,33 @@ export default class SecurityHelper {
       Buffer.from(encryptedTextBase64, 'base64')
     )
     return decryptedData.toString('utf8')
+  }
+
+  private static async generateSalt(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buffer) => {
+        if (err) {
+          reject(new SecurityError('Failed to generate salt', { error: err }))
+        } else {
+          resolve(buffer.toString('hex'))
+        }
+      })
+    })
+  }
+
+  /**
+   *
+   * @param input
+   * @param maxSize in bytes
+   * @returns
+   */
+  private static validateInput(input: crypto.BinaryLike, maxSize: number): boolean {
+    if (Buffer.isBuffer(input)) {
+      return input.length <= maxSize
+    }
+    if (typeof input === 'string') {
+      return Buffer.byteLength(input) <= maxSize
+    }
+    return true
   }
 }

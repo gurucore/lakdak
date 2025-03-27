@@ -10,6 +10,24 @@ export class CustomError extends Error {
     public readonly extra?: any
   ) {
     super(message)
-    this.name = 'CustomError'
+    this.name = this.constructor.name || 'CustomError'
+  }
+}
+
+export class SecurityError extends CustomError {
+  constructor(message: string, public readonly error?: Error | unknown, extra?: any) {
+    super(message, error || 'SECURITY_ERROR', extra)
+  }
+}
+
+export class FileError extends CustomError {
+  constructor(message: string, public readonly error?: Error | unknown, extra?: any) {
+    super(message, error || 'FILE_ERROR', extra)
+  }
+}
+
+export class ValidationError extends CustomError {
+  constructor(message: string, public readonly error?: Error | unknown, extra?: any) {
+    super(message, error || 'VALIDATION_ERROR', extra)
   }
 }
