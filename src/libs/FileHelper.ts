@@ -6,39 +6,7 @@ import { promises as fsPromises, constants, createWriteStream } from 'fs'
 import { RawNetworkHelper } from './RawNetworkHelper'
 import { CommonHelper } from 'gachchan'
 
-import { FileError, ValidationError } from '@/models/CustomError'
-
-export class RemoteFileHelper extends FileHelper {
-  /**
-   * download remote file into local temp dir
-   * @param link
-   * @returns local temp file path
-   */
-  static async cacheRemoteUrl(link: string) {
-    if (!link) throw new ValidationError(`argument link/URL cannot be empty:${link}`)
-
-    if (FileHelper.isLocalFilePath(link)) {
-      return link // already in local, no need to download
-    }
-
-    if (!CommonHelper.isURL(link)) {
-      throw new ValidationError(`argument link:${link} is invalid URL format`)
-    }
-
-    const url = link
-    // https://vbee-studio-tmp.s3.ap-southeast-1.amazonaws.com/voice-cloning/voices/6765858815ba1ce0979a8b35/filename.wav ==> filename.wav
-    const fileName = path.basename(link) // = link.split('/').slice(-1)[0]
-    const outputFilePath = FileHelper.generateNewTempFilePath('temp-cached_', '_' + fileName)
-
-    try {
-      await RawNetworkHelper.download(url, outputFilePath)
-    } catch (err) {
-      throw new FileError('Failed to cache remote URL', err, { errorCode: (err as any).code, url, outputFilePath })
-    }
-
-    return outputFilePath
-  }
-}
+import { FileError, ValidationError } from '../models/CustomError'
 
 export class FileHelper {
   /** use promise based access() API to check existence */
@@ -123,9 +91,6 @@ export class FileHelper {
     return Promise.all(operations)
   }
 
-  /** @deprecated */
-  static cacheRemoteUrl = RemoteFileHelper.cacheRemoteUrl
-
   /**
    * write content to file
    * @param content
@@ -187,5 +152,37 @@ export class FileHelper {
     } catch (err) {
       throw new FileError('Failed to get file size', err, { filePath })
     }
+  }
+}
+
+export class RemoteFileHelper extends FileHelper {
+  /**
+   * download remote file into local temp dir
+   * @param link
+   * @returns local temp file path
+   */
+  static async cacheRemoteUrl(link: string) {
+    if (!link) throw new ValidationError(`argument link/URL cannot be empty:${link}`)
+
+    if (FileHelper.isLocalFilePath(link)) {
+      return link // already in local, no need to download
+    }
+
+    if (!CommonHelper.isURL(link)) {
+      throw new ValidationError(`argument link:${link} is invalid URL format`)
+    }
+
+    const url = link
+    // https://vbee-studio-tmp.s3.ap-southeast-1.amazonaws.com/voice-cloning/voices/6765858815ba1ce0979a8b35/filename.wav ==> filename.wav
+    const fileName = path.basename(link) // = link.split('/').slice(-1)[0]
+    const outputFilePath = FileHelper.generateNewTempFilePath('temp-cached_', '_' + fileName)
+
+    try {
+      await RawNetworkHelper.download(url, outputFilePath)
+    } catch (err) {
+      throw new FileError('Failed to cache remote URL', err, { errorCode: (err as any).code, url, outputFilePath })
+    }
+
+    return outputFilePath
   }
 }

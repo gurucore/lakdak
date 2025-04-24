@@ -1,5 +1,5 @@
 import { vi, describe, expect, it, test } from 'vitest'
-import SecurityHelper from './SecurityHelper'
+import { SecurityHelper } from './SecurityHelper'
 
 describe('SecurityHelper', () => {
   describe('Hash', () => {

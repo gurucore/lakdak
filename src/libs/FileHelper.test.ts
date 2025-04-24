@@ -1,6 +1,6 @@
 import { it, expect, describe } from 'vitest'
 import path from 'path'
-import { FileHelper as target } from './FileHelper'
+import { RemoteFileHelper, FileHelper as target } from './FileHelper'
 import { TestHelper } from './TestHelper'
 import { createReadStream } from 'fs'
 
@@ -50,7 +50,7 @@ describe('FileHelper', () => {
 
   describe('cacheRemoteUrl', () => {
     it('exist file should be downloaded into temp folder', async () => {
-      expect(await target.cacheRemoteUrl(TestHelper.ExistingInternetFileUrl)).contain(path.basename(TestHelper.ExistingInternetFileUrl))
+      expect(await RemoteFileHelper.cacheRemoteUrl(TestHelper.ExistingInternetFileUrl)).contain(path.basename(TestHelper.ExistingInternetFileUrl))
     })
   })
 

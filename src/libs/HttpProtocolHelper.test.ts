@@ -1,5 +1,5 @@
 import { vi, describe, expect, it, test } from 'vitest'
-import HttpProtocolHelper from './HttpProtocolHelper'
+import { HttpProtocolHelper } from './HttpProtocolHelper'
 
 describe('HttpProtocolHelper', () => {
   describe('Hash', () => {

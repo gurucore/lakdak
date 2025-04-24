@@ -1,5 +1,5 @@
 import { vi, describe, expect, it, test } from 'vitest'
-import DevOpsHelper from './DevOpsHelper'
+import { DevOpsHelper } from './DevOpsHelper'
 
 describe('DevOpsHelper', () => {
   describe('getCurrentServerIpAddresses', () => {
