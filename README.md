@@ -74,7 +74,7 @@ pnpm dev
 
   - To skip CI check build, add `skipCI` to commit message
 
-- create a tag (start with `v` and `semver` like v0.0.1) will `npm run build` and create a package on Github Packages https://github.com/vbee-holding/vbee-node-shared-lib/packages
+- create a tag (start with `v` and `semver` like v0.0.1) will `npm run build` and create a package on https://www.npmjs.com/package/@gurucore/lakdak
 
 ### NOTE about package.json - "type": "module"
 
