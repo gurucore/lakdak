@@ -92,7 +92,7 @@ The build process outputs both module formats (already does this by specifying b
 To avoid setup npm build and deploy, we can research to use deps like this: "@vbee-holding/node-shared-lib": "github:vbee-holding/vbee-node-shared-lib#v0.1.0"
 But this require the lib to be in public repo
 
-1. Run `pnpm release`
+1. Run `pnpm run ci` and `pnpm release` locally before commit and push
 1. The output will be put to `/dist` (support both **ESM-MJS** and **CommonJS-CJS-UMD**)
 1. commit the `.dist` folder to repo to publish it on Github
 1. create new `versioned tag` for the release (E.g.: `v0.2.3`)

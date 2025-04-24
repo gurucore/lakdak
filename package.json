@@ -1,6 +1,6 @@
 {
   "name": "@gurucore/lakdak",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "keywords": [
     "nodejs",
     "lib",
@@ -32,7 +32,9 @@
   "exports": {
     ".": {
       "require": "./dist/lakdak.umd.cjs",
-      "import": "./dist/lakdak.es.mjs"
+      "import": "./dist/lakdak.es.mjs",
+      "default": "./dist/lakdak.es.mjs",
+      "types": "./dist/types/index.d.ts"
     }
   },
   "types": "./dist/types/index.d.ts",
@@ -53,6 +55,7 @@
     "gachchan": "^8.0.1"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "latest",
     "@parcel/bundler-library": "latest",
     "@parcel/config-default": "latest",
     "@parcel/packager-ts": "latest",

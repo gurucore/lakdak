@@ -14,11 +14,11 @@ export default {
     //   format: 'umd'
     // },
     // {
-    //   file: 'lakdak.es.js',
+    //   file: 'lakdak.es.mjs',
     //   format: 'es'
     // },
     {
-      file: 'lakdak.js',
+      file: 'lakdak.cjs',
       format: 'cjs'
     }
   ],
