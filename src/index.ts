@@ -4,6 +4,7 @@ import { HttpProtocolHelper } from './libs/HttpProtocolHelper'
 import { CLIHelper } from './libs/CLIHelper'
 import { FileHelper } from './libs/FileHelper'
 import { RawNetworkHelper } from './libs/RawNetworkHelper'
+import { CustomError } from './models/CustomError'
 
 export {
   DevOpsHelper,
@@ -13,5 +14,8 @@ export {
   //
   CLIHelper,
   FileHelper,
-  RawNetworkHelper
+  RawNetworkHelper,
+
+  //
+  CustomError
 }

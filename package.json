@@ -1,8 +1,8 @@
 {
   "name": "@gurucore/lakdak",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Library for common utils in NodeJS to develop backend web API",
-  "releasenote": "Retire UtilHelper, should use npm:gachchan. FileHelper support write data (content/stream) to file. Distributing separate files (for each class) can improve tree shaking in end applications. Setup project to build and output ES and UMD module. Add new Helpers: File CLI RawNetwork Util",
+  "releasenote": "Expose CustomError.Retire UtilHelper, should use npm:gachchan. FileHelper support write data (content/stream) to file. Distributing separate files (for each class) can improve tree shaking in end applications. Setup project to build and output ES and UMD module. Add new Helpers: File CLI RawNetwork Util",
   "author": "lockevn",
   "license": "GPL-3.0-only",
   "keywords": [
@@ -22,8 +22,13 @@
     "type": "git",
     "url": "git+https://github.com/gurucore/lakdak.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
   "type": "module",
   "source": "src/index.ts",
