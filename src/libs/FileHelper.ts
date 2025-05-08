@@ -2,11 +2,11 @@ import os from 'os'
 import path from 'path'
 import { Readable } from 'stream'
 import { promises as fsPromises, constants, createWriteStream } from 'fs'
-
-import { RawNetworkHelper } from './RawNetworkHelper'
 import { CommonHelper } from 'gachchan'
 
-import { FileError, ValidationError } from '../models/CustomError'
+import { RawNetworkHelper } from './RawNetworkHelper'
+
+import { CustomError, FileError, ValidationError } from '../models/CustomError'
 
 export class FileHelper {
   /** use promise based access() API to check existence */
@@ -173,9 +173,10 @@ export class RemoteFileHelper extends FileHelper {
     }
 
     const url = link
-    // https://vbee-studio-tmp.s3.ap-southeast-1.amazonaws.com/voice-cloning/voices/6765858815ba1ce0979a8b35/filename.wav ==> filename.wav
-    const fileName = path.basename(link) // = link.split('/').slice(-1)[0]
-    const outputFilePath = FileHelper.generateNewTempFilePath('temp-cached_', '_' + fileName)
+    // https://vbee-studio-tmp.s3.ap-southeast-1.amazonaws.com/test/a/b/filename.wav?a=b&c=d.mp3 ==> filename.wav
+    const fileName = this.extractFilenameFromUrl(link)
+    const fileExtension = path.extname(fileName)
+    const outputFilePath = FileHelper.generateNewTempFilePath('temp-cached_', '_' + fileName.slice(0, 30) + fileExtension)
 
     try {
       await RawNetworkHelper.download(url, outputFilePath)
@@ -184,5 +185,20 @@ export class RemoteFileHelper extends FileHelper {
     }
 
     return outputFilePath
+  }
+
+  private static extractFilenameFromUrl(url: string): string {
+    try {
+      // URL Parsing: The URL object is used to parse the input URL, which automatically handles the components (protocol, hostname, pathname, search, hash).
+      const urlObj = new URL(url)
+
+      // Pathname Extraction: The pathname is split by '/' to get an array of path segments.
+      const pathSegments = urlObj.pathname.split('/')
+
+      // Filename Isolation: The last segment of the path is taken as it contains the filename.
+      return pathSegments[pathSegments.length - 1]
+    } catch (error) {
+      throw new CustomError('Invalid URL', error, { url })
+    }
   }
 }

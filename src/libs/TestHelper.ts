@@ -8,6 +8,8 @@ const sampleTypeMap = {
 
 export class TestHelper {
   static ExistingInternetFileUrl = 'https://vnexpress.net/robots.txt'
+  static ExistingInternetWaveFileUrl = 'https://freewavesamples.com/files/Alesis-Fusion-Nylon-String-Guitar-C4.wav'
+
   static SampleDomainUrl = 'https://gurucore.com'
 
   /**
