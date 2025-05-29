@@ -1,6 +1,6 @@
 {
   "name": "@gurucore/lakdak",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "Library for common utils in NodeJS to develop backend web API",
   "releasenote": "Bugfix. Expose CustomError. Retire UtilHelper, should use npm:gachchan. FileHelper support write data (content/stream) to file. Distributing separate files (for each class) can improve tree shaking in end applications. Setup project to build and output ES and UMD module",
   "author": "lockevn",
@@ -56,7 +56,7 @@
     "release": "npm run check && npm run build"
   },
   "dependencies": {
-    "gachchan": "^8.0.1"
+    "gachchan": "^9.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "latest",
