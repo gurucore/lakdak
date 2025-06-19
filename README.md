@@ -2,11 +2,15 @@
 
 **Common and best practices** code are accumulated here in a NodeJS Lib for writting backend (API) services
 
+Published on NPM
+[![NPM downloads](https://img.shields.io/npm/dm/@gurucore/lakdak.svg?label=npm%20downloads)](https://npm-stat.com/charts.html?package=@gurucore/lakdak)
+[![Push (CI check)](https://github.com/gurucore/lakdak/actions/workflows/push.yml/badge.svg?branch=main)](https://github.com/gurucore/lakdak/actions/workflows/push.yml)
+
 # Usage
 
 In any TypeScript (or JavaScript) project, run:
 
-`npm i lakdak`
+`npm i @gurucore/lakdak`
 
 Then in your code
 

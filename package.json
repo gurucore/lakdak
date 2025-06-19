@@ -1,6 +1,6 @@
 {
   "name": "@gurucore/lakdak",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "description": "Library for common utils in NodeJS to develop backend web API",
   "releasenote": "Bugfix. Expose CustomError. Retire UtilHelper, should use npm:gachchan. FileHelper support write data (content/stream) to file. Distributing separate files (for each class) can improve tree shaking in end applications. Setup project to build and output ES and UMD module",
   "author": "lockevn",
@@ -33,14 +33,6 @@
   "source": "src/index.ts",
   "main": "./dist/lakdak.umd.cjs",
   "module": "./dist/lakdak.es.mjs",
-  "exports": {
-    ".": {
-      "require": "./dist/lakdak.umd.cjs",
-      "import": "./dist/lakdak.es.mjs",
-      "default": "./dist/lakdak.es.mjs",
-      "types": "./dist/types/index.d.ts"
-    }
-  },
   "types": "./dist/types/index.d.ts",
   "scripts": {
     "dev": "parcel watch",
