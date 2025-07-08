@@ -80,20 +80,17 @@ pnpm dev
 
 - create a tag (start with `v` and `semver` like v0.0.1) will `npm run build` and create a package on https://www.npmjs.com/package/@gurucore/lakdak
 
-### NOTE about package.json - "type": "module"
+### NOTE about package.json config to support serving both CommonJS and ESM
 
-Make this library intended to be consumed as an ES module.
-This setting ensures that Node.js treats .js files as ES modules by default.
-
-We want to support both CommonJS and ES module consumers
+As a shared library, we want to support both CommonJS and ES module consumers
 The build process outputs both module formats (already does this by specifying both main and module fields)
 
-- CommonJS consumers to use the main entry point
-- and ES module consumers to use the module entry point.
+- CommonJS consumers (used with NodeJS repo, written in JS) to use the main entry point
+- and ES module consumers (NodeJS repo written in TypeScript, or modern browser) to use the module entry point
 
-### NOTE: about releasing
+### NOTE: about code-repo-releasing without publishing to npmjs
 
-To avoid setup npm build and deploy, we can research to use deps like this: "@vbee-holding/node-shared-lib": "github:vbee-holding/vbee-node-shared-lib#v0.1.0"
+To avoid setup npm build and deploy, we can research to use deps like this: `"@gurucore/shared-lib": "github:gurucore/shared-lib#v0.1.0"`
 But this require the lib to be in public repo
 
 1. Run `pnpm run ci` and `pnpm release` locally before commit and push
