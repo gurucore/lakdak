@@ -56,7 +56,7 @@ export class HttpProtocolHelper {
   /** decorate the request with extra info (ip, physical location) of browser/client */
   public static extractClientInfo(headers: Headers | Record<string, string>) {
     const clientInfo = {
-      ip: HttpProtocolHelper.extractIpAddress(headers),
+      publicIP: HttpProtocolHelper.extractIpAddress(headers),
 
       country:
         headers['cloudfront-viewer-country'] || // cloudfront
