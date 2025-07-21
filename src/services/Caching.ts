@@ -19,7 +19,7 @@ export namespace Caching {
      * @param ttl
      * @returns
      */
-    private static _createInMemoryTtlStore(ttl: number = 60000) {
+    protected static _createInMemoryTtlStore(ttl: number = 60000) {
       // there will be no serialize and deserialize, and we don't need this for InMemory
       const inMemoryStore = createKeyvSimpleMemoryStore({ ttl })
       inMemoryStore.store.descriptiveName = 'MemoryTtlStore'
@@ -30,7 +30,7 @@ export namespace Caching {
      * return a Keyv store, without serialize and deserialize, optimized for InMemory
      * @param maxItemsCount The maximum number of items to store in the cache before evicting old entries
      */
-    private static _createInMemoryLruStore(maxItemsCount: number = 5000) {
+    protected static _createInMemoryLruStore(maxItemsCount: number = 5000) {
       const lruCacheStore = new LRUCache({
         max: maxItemsCount
       })
