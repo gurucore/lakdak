@@ -20,3 +20,5 @@ export {
   //
   CustomError
 }
+
+export { Caching } from './services/Caching'

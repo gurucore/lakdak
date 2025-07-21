@@ -19,7 +19,7 @@ import { FileHelper } from 'lakdak'
 console.log(FileHelper())
 ```
 
-If you cannot see the code suggestion (with comment), add this to `tsconfig.json`
+### If you cannot see the code suggestion (with comment), add this to `tsconfig.json`
 
 ```json
 {
@@ -42,6 +42,23 @@ To benefit tree-shaking, add this to `tsconfig.json`
   }
 }
 ```
+
+# Notable services
+
+## CLI Helper
+
+## File Helper and Remote File Helper
+
+## Raw Network Helper
+
+Download internet file with raw stream, reduce a lot of memory consumption
+
+## Cache Manager
+
+- wrap any fetch function in cache
+- supports a mechanism to refresh expiring cache keys in background.
+- Tiered caches, data is stored in many caches, fetched from the highest priority cache(s) first
+- nonBlocking, Keyv compatible
 
 # Developments
 
