@@ -1,4 +1,4 @@
-import { createCache, Cache } from 'cache-manager'
+import { createCache, Cache as CacheManagerBase } from 'cache-manager'
 import { createKeyv as createKeyvSimpleMemoryStore } from 'cacheable'
 import { Keyv } from 'keyv'
 
@@ -7,7 +7,7 @@ import { LRUCache } from 'lru-cache'
 export namespace Caching {
   export type CacheManager = {
     descriptiveName: string
-  } & Cache
+  } & CacheManagerBase
 
   // NOTE: TECH: if we manually create Keyv, default serialize and deserialize will be JSONB.stringify and JSONB.parse
   // const s = new Keyv({ store: new CacheableMemory() })
