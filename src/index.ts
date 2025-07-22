@@ -21,4 +21,11 @@ export {
   CustomError
 }
 
+// try to re-export type hint from deps
+export { createCache } from 'cache-manager'
+export type { Events } from 'cache-manager'
+export type { WrapOptions } from 'cacheable'
+export { Keyv } from 'keyv'
+export type { StoredDataRaw } from 'keyv'
+
 export { Caching } from './services/Caching'

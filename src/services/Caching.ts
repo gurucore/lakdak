@@ -1,13 +1,44 @@
-import { createCache, Cache as CacheManagerBase } from 'cache-manager'
-import { createKeyv as createKeyvSimpleMemoryStore } from 'cacheable'
-import { Keyv } from 'keyv'
+import { createCache, Cache as CacheManagerBase, Events } from 'cache-manager'
+import { createKeyv as createKeyvSimpleMemoryStore, WrapOptions } from 'cacheable'
+import EventEmitter from 'events'
+import { Keyv, StoredDataRaw } from 'keyv'
 
 import { LRUCache } from 'lru-cache'
 
 export namespace Caching {
-  export type CacheManager = {
+  export interface CacheManager {
     descriptiveName: string
-  } & CacheManagerBase
+
+    // copy type Cache as CacheManagerBase from cache-manager
+    get: <T>(key: string) => Promise<T | undefined>
+    mget: <T>(keys: string[]) => Promise<Array<T | undefined>>
+    ttl: (key: string) => Promise<number | undefined>
+    set: <T>(key: string, value: T, ttl?: number) => Promise<T>
+    mset: <T>(
+      list: Array<{
+        key: string
+        value: T
+        ttl?: number
+      }>
+    ) => Promise<
+      Array<{
+        key: string
+        value: T
+        ttl?: number
+      }>
+    >
+    del: (key: string) => Promise<boolean>
+    mdel: (keys: string[]) => Promise<boolean>
+    clear: () => Promise<boolean>
+    on: <E extends keyof Events>(event: E, listener: Events[E]) => EventEmitter
+    off: <E extends keyof Events>(event: E, listener: Events[E]) => EventEmitter
+    disconnect: () => Promise<undefined>
+    cacheId: () => string
+    stores: Keyv[]
+    wrap<T>(key: string, fnc: () => T | Promise<T>, ttl?: number | ((value: T) => number), refreshThreshold?: number | ((value: T) => number)): Promise<T>
+    wrap<T>(key: string, fnc: () => T | Promise<T>, options: WrapOptions): Promise<T>
+    wrap<T>(key: string, fnc: () => T | Promise<T>, options: WrapOptions): Promise<StoredDataRaw<T>>
+  }
 
   // NOTE: TECH: if we manually create Keyv, default serialize and deserialize will be JSONB.stringify and JSONB.parse
   // const s = new Keyv({ store: new CacheableMemory() })
@@ -53,7 +84,7 @@ export namespace Caching {
       const storeName = stores.map((s) => s.store.descriptiveName).join('&')
       const cache = createCache({
         stores
-      }) as CacheManager
+      }) as unknown as CacheManager
       cache.descriptiveName = descriptiveName || `Unspecified-${storeName}-Cache init-at-${new Date().toISOString()}`
       console.log(cache.descriptiveName)
       return cache
