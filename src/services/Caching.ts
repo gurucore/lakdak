@@ -35,15 +35,30 @@ export namespace Caching {
     disconnect: () => Promise<undefined>
     cacheId: () => string
     stores: Keyv[]
+
+    /**
+     * Fetch value with function, cache it.
+     *
+     * @description Calling multiple wrap() with the same key at the same time will only call the function once.
+     * If a cache item has a TTL of 10 seconds and the refreshThreshold is set to 3 seconds, the library will trigger a background refresh when the item's TTL is 3 seconds or less.
+     * The library will return the existing value until the new value is available from the background process.
+     * In essence, the refreshThreshold allows you to optimize for both responsiveness (by serving the existing cached value) and freshness (by updating the cache in the background).
+     *
+     * @description When we have multiple tiers (stores), the store that will be checked for refresh is the one where the key will be found first (highest priority).
+     * If the threshold is low and the worker function is slow, the key may expire and you may encounter a racing condition with updating values.
+     * @param key
+     * @param fnc function to fetch fresh value
+     * @param ttl in miliseconds, time to live
+     * @param refreshThreshold in miliseconds, If refreshThreshold is set and the remaining TTL is less than refreshThreshold, the system will update the value asynchronously. In the meantime, the system will return the old value until expiration. If no ttl is set for the key, the refresh mechanism will not be triggered.
+     */
     wrap<T>(key: string, fnc: () => T | Promise<T>, ttl?: number | ((value: T) => number), refreshThreshold?: number | ((value: T) => number)): Promise<T>
     wrap<T>(key: string, fnc: () => T | Promise<T>, options: WrapOptions): Promise<T>
     wrap<T>(key: string, fnc: () => T | Promise<T>, options: WrapOptions): Promise<StoredDataRaw<T>>
   }
 
-  // NOTE: TECH: if we manually create Keyv, default serialize and deserialize will be JSONB.stringify and JSONB.parse
-  // const s = new Keyv({ store: new CacheableMemory() })
-  // console.log('s', s.serialize)
-
+  /**
+   * Factory to create CacheManager, see features and examples howto use CacheManager in https://github.com/jaredwray/cacheable/blob/main/packages/cache-manager/README.md
+   */
   export class CacheManagerFactory {
     /**
      * return a Keyv store, without serialize and deserialize, optimized for InMemory

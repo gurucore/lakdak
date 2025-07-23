@@ -57,7 +57,7 @@ describe('CacheManagerFactory', () => {
       expect(await cacheManager.get('key')).toBe('value')
     })
 
-    it('get set wrap', async () => {
+    it('get set', async () => {
       const cacheManager = CacheManagerFactory.createLruMemoryCache({ maxItemsCount: 3 })
 
       await cacheManager.set('foo', 'bar')
