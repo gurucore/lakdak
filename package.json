@@ -50,7 +50,7 @@
   "dependencies": {
     "cache-manager": "^7.0.1",
     "cacheable": "^1.10.2",
-    "gachchan": "^9.1.0",
+    "gachchan": "^9.1.1",
     "keyv": "^5.4.0",
     "lru-cache": "^11.1.0"
   },
