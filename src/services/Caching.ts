@@ -96,12 +96,15 @@ export namespace Caching {
      * @param descriptiveName auto generated if not provided
      */
     static createCache(stores: Keyv[], descriptiveName: string) {
-      const storeName = stores.map((s) => s.store.descriptiveName).join('&')
+      const storeName = stores
+        .map((s) => s.store.descriptiveName)
+        .filter((name) => name) // remove empty
+        .join('&')
       const cache = createCache({
         stores
       }) as unknown as CacheManager
-      cache.descriptiveName = descriptiveName || `Unnamed-${storeName}-Cache init-at-${new Date().toISOString()}`
-      console.log(cache.descriptiveName)
+      cache.descriptiveName = descriptiveName || `Unnamed-${storeName}-Cache-init-at-${new Date().toISOString()}`
+      console.log('CacheManagerFactory successfully created', cache.descriptiveName)
       return cache
     }
 
