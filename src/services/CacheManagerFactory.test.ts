@@ -12,7 +12,7 @@ describe('CacheManagerFactory', () => {
   describe('create', async () => {
     it('naming of descriptiveName', async () => {
       const memoryCache = CacheManagerFactory.createTtlMemoryCache({ ttl: 1000 })
-      expect(memoryCache.descriptiveName.indexOf('Unspecified')).greaterThanOrEqual(0)
+      expect(memoryCache.descriptiveName.indexOf('Unnamed')).greaterThanOrEqual(0)
 
       const memoryCache2 = CacheManagerFactory.createTtlMemoryCache({ ttl: 1000, descriptiveName: 'TtlMemoryCache' })
       expect(memoryCache2.descriptiveName.indexOf('TtlMemoryCache')).greaterThanOrEqual(0)

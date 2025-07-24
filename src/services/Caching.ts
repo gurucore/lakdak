@@ -100,7 +100,7 @@ export namespace Caching {
       const cache = createCache({
         stores
       }) as unknown as CacheManager
-      cache.descriptiveName = descriptiveName || `Unspecified-${storeName}-Cache init-at-${new Date().toISOString()}`
+      cache.descriptiveName = descriptiveName || `Unnamed-${storeName}-Cache init-at-${new Date().toISOString()}`
       console.log(cache.descriptiveName)
       return cache
     }
