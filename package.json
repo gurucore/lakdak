@@ -16,7 +16,7 @@
     "shared-library"
   ],
   "engines": {
-    "node": ">=20.x"
+    "node": ">=20.19"
   },
   "repository": {
     "type": "git",
