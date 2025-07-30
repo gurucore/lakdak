@@ -15,7 +15,7 @@ describe('RemoteFileHelper', () => {
     })
 
     it('non exist file with url should throw', async () => {
-      await expect(target.cacheRemoteUrl('https://example.com/non-exist.mp3')).rejects.toThrow()
+      await expect(target.cacheRemoteUrl(`https://example.com/non-exist-123456789${Date.now()}.mp3`, { timeout: 10000 })).rejects.toThrow()
     })
   })
 })

@@ -4,7 +4,7 @@ import { Readable } from 'stream'
 import { promises as fsPromises, constants, createWriteStream } from 'fs'
 import { CommonHelper } from 'gachchan'
 
-import { RawNetworkHelper } from './RawNetworkHelper'
+import { DownloadOptions, RawNetworkHelper } from './RawNetworkHelper'
 
 import { CustomError, FileError, ValidationError } from '../models/CustomError'
 
@@ -161,7 +161,7 @@ export class RemoteFileHelper extends FileHelper {
    * @param link
    * @returns local temp file path
    */
-  static async cacheRemoteUrl(link: string) {
+  static async cacheRemoteUrl(link: string, options: DownloadOptions = {}) {
     if (!link) throw new ValidationError(`argument link/URL cannot be empty:${link}`)
 
     if (FileHelper.isLocalFilePath(link)) {
@@ -179,7 +179,7 @@ export class RemoteFileHelper extends FileHelper {
     const outputFilePath = FileHelper.generateNewTempFilePath('temp-cached_', '_' + fileName.slice(0, 30) + fileExtension)
 
     try {
-      await RawNetworkHelper.download(url, outputFilePath)
+      await RawNetworkHelper.download(url, outputFilePath, options)
     } catch (err) {
       throw new FileError('Failed to cache remote URL', err, { errorCode: (err as any).code, url, outputFilePath })
     }
