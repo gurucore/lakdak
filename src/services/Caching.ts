@@ -9,9 +9,15 @@ export namespace Caching {
   export interface CacheManager {
     descriptiveName: string
 
-    // copy type Cache as CacheManagerBase from cache-manager
+    //#region Copy type Cache as CacheManagerBase from cache-manager
+
+    /** return string if value is string, return number if we set number value.
+     * @description This is different from native redisClient.get() */
     get: <T>(key: string) => Promise<T | undefined>
+    /** return string if value is string, return number if we set number value.
+     * @description This is different from native redisClient.mget() */
     mget: <T>(keys: string[]) => Promise<Array<T | undefined>>
+    /** return time to live of the key */
     ttl: (key: string) => Promise<number | undefined>
     set: <T>(key: string, value: T, ttl?: number) => Promise<T>
     mset: <T>(
@@ -28,6 +34,9 @@ export namespace Caching {
       }>
     >
     del: (key: string) => Promise<boolean>
+    /** multiple delete
+     * @description tested with Redis storage (v6 and v8)
+     */
     mdel: (keys: string[]) => Promise<boolean>
     clear: () => Promise<boolean>
     on: <E extends keyof Events>(event: E, listener: Events[E]) => EventEmitter
@@ -54,6 +63,8 @@ export namespace Caching {
     wrap<T>(key: string, fnc: () => T | Promise<T>, ttl?: number | ((value: T) => number), refreshThreshold?: number | ((value: T) => number)): Promise<T>
     wrap<T>(key: string, fnc: () => T | Promise<T>, options: WrapOptions): Promise<T>
     wrap<T>(key: string, fnc: () => T | Promise<T>, options: WrapOptions): Promise<StoredDataRaw<T>>
+
+    //#endregion
   }
 
   /**
