@@ -19,6 +19,8 @@ export namespace Caching {
     mget: <T>(keys: string[]) => Promise<Array<T | undefined>>
     /** return time to live of the key */
     ttl: (key: string) => Promise<number | undefined>
+
+    /** @returns the set value */
     set: <T>(key: string, value: T, ttl?: number) => Promise<T>
     mset: <T>(
       list: Array<{
@@ -33,9 +35,16 @@ export namespace Caching {
         ttl?: number
       }>
     >
+
+    /** delete
+     * @description tested with Redis storage (v6 and v8)
+     * @returns number of keys that were removed, 0 if the key did not exist, 1 if the key was removed
+     */
     del: (key: string) => Promise<boolean>
+
     /** multiple delete
      * @description tested with Redis storage (v6 and v8)
+     * @returns number of keys that were removed, 0 if the key did not exist
      */
     mdel: (keys: string[]) => Promise<boolean>
     clear: () => Promise<boolean>

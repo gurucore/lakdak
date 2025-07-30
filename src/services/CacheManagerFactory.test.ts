@@ -25,7 +25,8 @@ describe('CacheManagerFactory', () => {
       const twoTiersMemoryCache = CacheManagerFactory.createCache([inMemoryStore1, inMemoryStore2], '2TiersCache')
       expect(twoTiersMemoryCache.stores.length).toBe(2)
 
-      twoTiersMemoryCache.set('key', obj)
+      expect(await twoTiersMemoryCache.set('key', obj)).toMatchObject(obj)
+
       expect(await twoTiersMemoryCache.get('key')).toMatchObject(obj)
       expect(await inMemoryStore1.get('key')).toMatchObject(inMemoryStore2.get('key'))
     })
@@ -60,7 +61,7 @@ describe('CacheManagerFactory', () => {
     it('get set', async () => {
       const cacheManager = CacheManagerFactory.createLruMemoryCache({ maxItemsCount: 3 })
 
-      await cacheManager.set('foo', 'bar')
+      expect(await cacheManager.set('foo', 'bar')).toBe('bar')
       expect(await cacheManager.get('foo')).toBe('bar')
 
       await cacheManager.del('foo')
