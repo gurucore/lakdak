@@ -3,7 +3,7 @@ import { RemoteFileHelper as target } from './FileHelper'
 import { TestHelper } from './TestHelper'
 
 describe('RemoteFileHelper', () => {
-  describe('cacheRemoteUrl', () => {
+  describe('cacheRemoteUrl', { timeout: 20000 }, () => {
     it('exist file should be downloaded', async () => {
       expect(await target.checkFileExist(await target.cacheRemoteUrl(TestHelper.ExistingInternetFileUrl))).toBeTruthy()
       expect(await target.checkFileExist(await target.cacheRemoteUrl(TestHelper.ExistingInternetWaveFileUrl))).toBeTruthy()
