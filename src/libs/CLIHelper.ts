@@ -81,8 +81,8 @@ It's not as comprehensive as "npm:shell-quote" but handles most common cases saf
     try {
       const { stdout, stderr } = await execAsync(fullCommand, options)
       return {
-        output: stdout.trim(),
-        error: stderr.trim(),
+        output: stdout?.trim(),
+        error: stderr?.trim(),
         hint
       } as CLIResult
     } catch (error) {

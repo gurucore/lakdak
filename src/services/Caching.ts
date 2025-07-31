@@ -76,6 +76,8 @@ export namespace Caching {
     //#endregion
   }
 
+  // TODO: implement CacheManager with ability to set and get object without JSON.stringify and JSON.parse
+
   /**
    * Factory to create CacheManager, see features and examples howto use CacheManager in https://github.com/jaredwray/cacheable/blob/main/packages/cache-manager/README.md
    */

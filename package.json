@@ -1,6 +1,6 @@
 {
   "name": "@gurucore/lakdak",
-  "version": "0.15.6",
+  "version": "0.15.8",
   "description": "Library for common utils in NodeJS to develop backend web API",
   "releasenote": "Expose Caching. Bugfix. Expose CustomError. Retire UtilHelper, should use npm:gachchan. FileHelper support write data (content/stream) to file. Distributing separate files (for each class) can improve tree shaking in end applications. Setup project to build and output ES and UMD module",
   "author": "lockevn",

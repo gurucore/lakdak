@@ -50,26 +50,41 @@ describe('CacheManagerFactory', () => {
       expect(await memoryCache.get('key2')).toBeUndefined()
       expect(await memoryCache.get('key3')).toBe(3)
     })
+  })
 
+  describe('wrap', async () => {
     it('wrap', async () => {
       const cacheManager = CacheManagerFactory.createLruMemoryCache({ maxItemsCount: 3 })
 
       expect(await cacheManager.wrap('key', () => 'value', 30000)).toBe('value')
       expect(await cacheManager.get('key')).toBe('value')
     })
+  })
 
-    it('get set', async () => {
-      const cacheManager = CacheManagerFactory.createLruMemoryCache({ maxItemsCount: 3 })
+  describe('get set number string object', async () => {
+    it('number', async () => {
+      const cacheManager = CacheManagerFactory.createTtlMemoryCache({ ttl: 10000 })
 
-      expect(await cacheManager.set('foo', 'bar')).toBe('bar')
-      expect(await cacheManager.get('foo')).toBe('bar')
+      expect(await cacheManager.set('foo', 111, 10000)).toStrictEqual(111)
+      expect(await cacheManager.get('foo')).toStrictEqual(111)
 
       await cacheManager.del('foo')
       await cacheManager.get('foo')
       expect(await cacheManager.get('foo')).toBeUndefined()
+    })
 
-      await cacheManager.set('obj', { a: 1, b: '2' })
-      expect(await cacheManager.get('obj')).toMatchObject({ a: 1, b: '2' })
+    it('string', async () => {
+      const cacheManager = CacheManagerFactory.createTtlMemoryCache({ ttl: 10000 })
+
+      expect(await cacheManager.set('obj', "obj")).toStrictEqual("obj")
+      expect(await cacheManager.get('obj')).toStrictEqual("obj")
+    })
+
+    it('object', async () => {
+      const cacheManager = CacheManagerFactory.createTtlMemoryCache({ ttl: 10000 })
+
+      expect(await cacheManager.set('obj', obj)).toStrictEqual(obj)
+      expect(await cacheManager.get('obj')).toStrictEqual(obj)
     })
   })
 })

@@ -23,11 +23,11 @@ export class DownloadError extends CustomError {
 }
 
 /*
-      In Node.js: Axios uses the built-in http and https modules. 
-      This means that when you use Axios in a Node.js environment, 
-      it's essentially a wrapper around these core modules, 
-      providing a higher-level API and additional features.
-      */
+In Node.js: Axios uses the built-in http and https modules. 
+This means that when you use Axios in a Node.js environment, 
+it's essentially a wrapper around these core modules, 
+providing a higher-level API and additional features.
+*/
 export class RawNetworkHelper {
   /**
    * This is stream download using raw http/https API
@@ -41,6 +41,10 @@ However, there are cases where fetch() or axios might be preferred:
 If you need to process the file in memory anyway
 For very small files where the overhead doesn't matter
 When you need the additional features these libraries provide (like automatic retries, request interception, etc.)
+   * @param urlString remote file to download
+   * @param filePath to save the downloaded file
+   * @param options pass to the http/https GET request
+   * @returns 
    */
   static async download(urlString: string, filePath: string, options: DownloadOptions = {}): Promise<FileInfo> {
     // Validate and parse URL

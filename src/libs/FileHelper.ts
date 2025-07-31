@@ -157,8 +157,14 @@ export class FileHelper {
 
 export class RemoteFileHelper extends FileHelper {
   /**
-   * download remote file into local temp dir
-   * @param link
+   * Download remote file into local temp dir
+   * @description this use RawNetworkHelper, which use raw NodeJS http and https modules (similar to axios) underlying.
+   * The difference (with using fetch() or axios) is memory consumption.
+   * With Real-world performance example for a 1GB file, this is stream download ~100MB memory usage.
+   * fetch()/axios: ~1.1GB memory usage (entire file + overhead).
+   * @description However, there are cases where fetch() or axios might be preferred: If you need to process the file in memory anyway, or for very small files where the overhead doesn't matter.
+   * @param link remote file to download and cache to local file system
+   * @param options pass to the http/https GET request
    * @returns local temp file path
    */
   static async cacheRemoteUrl(link: string, options: DownloadOptions = {}) {
