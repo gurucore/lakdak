@@ -2,7 +2,7 @@ import http from 'http'
 import https from 'https'
 import fs from 'fs'
 import { URL } from 'url'
-import { CustomError } from '../models/CustomError'
+import { CustomError } from 'gachchan'
 
 export interface FileInfo {
   mime: string

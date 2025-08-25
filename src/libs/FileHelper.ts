@@ -6,7 +6,7 @@ import { CommonHelper } from 'gachchan'
 
 import { DownloadOptions, RawNetworkHelper } from './RawNetworkHelper'
 
-import { CustomError, FileError, ValidationError } from '../models/CustomError'
+import { FileError, ValidationError } from '../models/CustomError'
 
 export class FileHelper {
   /** use promise based access() API to check existence */
@@ -204,7 +204,7 @@ export class RemoteFileHelper extends FileHelper {
       // Filename Isolation: The last segment of the path is taken as it contains the filename.
       return pathSegments[pathSegments.length - 1]
     } catch (error) {
-      throw new CustomError('Invalid URL', error, { url })
+      throw new ValidationError('Invalid URL', error, { url })
     }
   }
 }

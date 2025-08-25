@@ -1,32 +1,22 @@
-/** Custom Error class, with support extra information about the exception */
-export class CustomError extends Error {
-  constructor(
-    message: string,
+import { CustomError as CustomErrorBase } from 'gachchan'
+/** Custom Error class, with support extra information about the exception
+ * @deprecated should use CustomError from npm:gachchan
+ */
+export class CustomError extends CustomErrorBase {}
 
-    /** original error */
-    public readonly error?: Error | unknown,
-
-    /** extra information about the exception, attached to this Error */
-    public readonly extra?: any
-  ) {
-    super(message)
-    this.name = this.constructor.name || 'CustomError'
-  }
-}
-
-export class SecurityError extends CustomError {
+export class SecurityError extends CustomErrorBase {
   constructor(message: string, public readonly error?: Error | unknown, extra?: any) {
     super(message, error || 'SECURITY_ERROR', extra)
   }
 }
 
-export class FileError extends CustomError {
+export class FileError extends CustomErrorBase {
   constructor(message: string, public readonly error?: Error | unknown, extra?: any) {
     super(message, error || 'FILE_ERROR', extra)
   }
 }
 
-export class ValidationError extends CustomError {
+export class ValidationError extends CustomErrorBase {
   constructor(message: string, public readonly error?: Error | unknown, extra?: any) {
     super(message, error || 'VALIDATION_ERROR', extra)
   }
